@@ -1,0 +1,62 @@
+body {
+	background-image:url("90103-desktop-wallpaper-deer-nature-spruce-mountains-lake-1366x768.jpg"); 
+	}
+.mainlogo{
+  margin-left:4px;
+	display: flex;
+	justify-content: space-between;
+	float: left;
+	margin-left: 410px;
+	margin-right: 20px;
+	margin-bottom: 0;
+}
+.logo{
+	font-family: Book Antiqua;
+	color: brown;
+	font-size: 55px;
+	margin: 80px;
+	padding: 50px;
+	margin-top: 0;
+	box-sizing:border-box;
+	text-align:top;
+	margin-bottom: 0;
+}
+button{
+	background-color: white;
+	color: rgb(245, 76, 132);
+	border-color: rgb(245, 76, 132);
+	width: 200px;
+	height: 70px;
+	font-size: 35px;
+	cursor: pointer;
+	border-radius: 6px;
+}
+button:hover{
+	background-color: rgb(245, 76, 132);
+	color: white;
+	transition: 0.5s;
+}
+button:active{
+	opacity: 0.3;
+}
+.sem1{
+	margin-left: 450px;
+	margin-top: 0;
+}
+.sem2{
+	margin-left:20px;
+}
+.sem3{
+	margin-top: 20px;
+	margin-left: 450px;
+}
+.sem4{
+	margin-left: 20px;
+}
+.sem5{
+	margin-top: 20px;
+	margin-left: 450px;
+}
+.sem6{
+	margin-left: 20px;
+}

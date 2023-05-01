@@ -1,0 +1,79 @@
+.mainlogo{
+  margin-left:4px;
+	display: flex;
+	justify-content: space-between;
+	float: left;
+	margin-left: 500px;
+	margin-right: 20px;
+	margin-bottom: 0;
+}
+.logo{
+	font-family: Book Antiqua;
+	color: brown;
+	font-size: 55px;
+	margin: 80px;
+	padding: 50px;
+	margin-top: 0;
+	box-sizing:border-box;
+	text-align:top;
+	margin-bottom: 0;
+}
+
+.contents{
+	color:white;
+	margin-left:10px;
+}
+
+.pagebody{
+	margin-left:270px;
+}
+
+.sidebar{
+	background: blue;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 225px;
+	height:100%;
+	padding: 20px 0;
+	transition: all 0.5s ease;
+}
+.sidebar ul li a{
+	color:white;
+	font-size: 16px;
+	position: relative;
+	display: block;
+	border-bottom: 1px solid blue;
+	text-decoration:none;
+}
+.que1,.que2,.que3,.que4,.que5,.que6,.que7,.que8,.que9,.que10,.que11,.que12,.que13,.que14,.que15,.que16,
+.que17,.que18,.que19,.que20,.que21,.que22,.que23,.que24,.que25,.que26,.que27,.que28,.que29,.que30,.que31,
+.que32,.que33,.que34,.que35,.que36,.que37,.que38,.que39,.que40,.que41,.que42,.que43,.que44,.que45,.que46,.que47,
+.que48,.que49,.que50,.que51,.que52,.que53,.que54,.que55,.que56,.que57,.que58,.que59,.que60,.que61,.que62{
+	font-family: helvetica;
+	width: 550px;
+	height: 450px;
+	font-size: 16px;
+	background-color: rgb(230, 233, 237);
+	border-radius: 10px;
+	resize: none;
+}
+
+button{
+	margin-top: 8px;
+	font-size: 22px;
+	background-color: white;
+	color: blue;
+	border-color: blue;
+	cursor: pointer;
+	transition: 0.5s;
+	border-radius: 6px;
+	border-width: 1px;
+}
+button:hover{
+	background-color: blue;
+	color: white;
+}
+button:active{
+	opacity: 0.5;
+}

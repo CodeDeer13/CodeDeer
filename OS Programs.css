@@ -1,0 +1,145 @@
+.logo{
+	font-family: Book Antiqua;
+	color: brown;
+	font-size: 55px;
+	margin: 80px;
+	padding: 50px;
+	margin-top: 0;
+	box-sizing:border-box;
+	text-align:top;
+	margin-bottom: 0;
+}
+.mainlogo{
+  margin-left:4px;
+	display: flex;
+	justify-content: space-between;
+	float: left;
+	margin-left: 410px;
+	margin-right: 20px;
+	margin-bottom: 0;
+}
+.q1,.q2,.q3,.q4,.q5,.q6,.q7,.q8,.q9,.q10,.q11,.q12{
+	margin-left: 40px;
+	font-family:Bahnschrift SemiLight;
+	font-size: 22px;
+	font-style: solid;
+}
+.que1{
+	font-family: helvetica;
+	margin-left:70px;
+	width: 500px;
+	height: 350px;
+	font-size: 16px;
+	background-color: rgb(230, 233, 237);
+	border-radius: 10px;
+	resize: none;
+}
+.que011{
+	font-family: helvetica;
+	margin-left:70px;
+	width: 310px;
+	height: 22px;
+	font-size: 16px;
+	background-color: rgb(230, 233, 237);
+	border-radius: 10px;
+	resize: none;
+}
+.que2{
+	font-family: helvetica;
+	margin-left:70px;
+	width: 300px;
+	height: 200px;
+	font-size: 16px;
+	background-color: rgb(230, 233, 237);
+	border-radius: 10px;
+	resize: none;
+}
+.que4{
+	font-family: helvetica;
+	margin-left:70px;
+	width: 300px;
+	height: 350px;
+	font-size: 16px;
+	background-color: rgb(230, 233, 237);
+	border-radius: 10px;
+	resize: none;
+}
+.que8{
+	font-family: helvetica;
+	margin-left:70px;
+	width: 300px;
+	height: 200px;
+	font-size: 16px;
+	background-color: rgb(230, 233, 237);
+	border-radius: 10px;
+	resize: none;
+}
+.que9{
+	font-family: helvetica;
+	margin-left:70px;
+	width: 300px;
+	height: 200px;
+	font-size: 16px;
+	background-color: rgb(230, 233, 237);
+	border-radius: 10px;
+	resize: none;
+}
+.que10{
+	font-family: helvetica;
+	margin-left:70px;
+	width: 300px;
+	height: 200px;
+	font-size: 16px;
+	background-color: rgb(230, 233, 237);
+	border-radius: 10px;
+	resize: none;
+}
+.que11{
+	font-family: helvetica;
+	margin-left:70px;
+	width: 300px;
+	height: 200px;
+	font-size: 16px;
+	background-color: rgb(230, 233, 237);
+	border-radius: 10px;
+	resize: none;
+}
+.que12{
+	font-family: helvetica;
+	margin-left:70px;
+	width: 300px;
+	height: 50px;
+	font-size: 16px;
+	background-color: rgb(230, 233, 237);
+	border-radius: 10px;
+	resize: none;
+}
+.que121{
+	font-family: helvetica;
+	margin-left:70px;
+	width: 310px;
+	height: 22px;
+	font-size: 16px;
+	background-color: rgb(230, 233, 237);
+	border-radius: 10px;
+	resize: none;
+}
+button{
+	margin-left:70px;
+	margin-top: 8px;
+	font-size: 22px;
+	background-color: white;
+	color: blue;
+	border-color: blue;
+	cursor: pointer;
+	transition: 0.5s;
+	border-radius: 6px;
+	border-width: 1px;
+}
+button:hover{
+	background-color: blue;
+	color: white;
+}
+button:active{
+	opacity: 0.5;
+}

@@ -1,0 +1,5105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+			<link href="llustration-reindeer-head-simple-contour-260nw-1914044329-modified.png" rel="icon" type="image/png">
+	    <title>
+		Code Deer
+		</title>
+		<link href="javaneocolab.css" rel="stylesheet">
+	</head>
+	<body>
+	<img class="mainlogo" src="llustration-reindeer-head-simple-contour-260nw-1914044329-modified.png"> 
+	<h1 class="logo"> Code Deer</h1>
+	<br>
+	<br>
+	<div class="sidebar">
+	<h1 class="contents">Contents</h1>
+	<ul>
+		<li><a href="#coc">Classes, objects and constructors</a></li><br>
+		<li><a href="#af">Abstract class and final keyword</a></li><br>
+		<li><a href="#if">Interface</a></li><br>
+		<li><a href="#ih1">Inheritance 1</a></li><br>
+		<li><a href="#ih2">Inheritance 2</a></li><br>
+		<li><a href="#p">Polymorphism</a></li><br>
+		<li><a href="#ex">Exceptions</a></li><br>
+		<li><a href="#th">Thread</a></li><br>
+		<li><a href="">Streams</a></li><br>
+		<li><a href="">Files and Generics</a></li><br>
+	</ul>
+	</div>
+	<div class="pagebody">
+	<h1 id="coc" class="coc">Classes, objects and constructors</h1><br>
+	<h2>Concept Builder</h2>
+	<p>1)While using parameterized constructor, how to specify the paramter list ?</p>
+	<p>Ans) Specify the parameter list as the same way it is specified in the method</p>
+	<p>2) All the variables of a class should be ideally declared as ?</p>
+	<p>Ans) private</p>
+	<p>3) What will happen, if only one parameterized constructor is explicitly defined?</p>
+	<p>Ans) Compilation fails when an object is created using default constructor</p>
+	<p>4) Which of these class is a superclass of every class in Java?</p>
+	<p>Ans) Object class</p>
+	<p>5) A default constructor _________</p>
+	<p>Ans) has no argument and return type</p><br>
+	<h2>Practice 2</h3>
+	<p>1) Create two classes a Box class and a Main class, create an object for the Box class in the Main class, and calculate the <b>volume of the box</b>.</p>
+	<textarea id="q1" class="que1" readonly>
+import java.util.*;
+class Box
+{
+    double sys(double a,double b,double c)
+    {
+        double vol=a*b*c;
+        System.out.printf("%.2f",vol);
+        return 0;
+    }
+}
+class main
+{
+    public static void main(String[] args)
+    {
+        Scanner in=new Scanner(System.in);
+        double a=in.nextDouble();
+        double b=in.nextDouble();
+        double c=in.nextDouble();
+        if(a<=0 || b<=0 || c<=0)
+        {
+            System.out.print("Invalid");
+        }
+        else
+        {
+            Box n=new Box();
+            n.sys(a,b,c);
+        }
+    }
+}
+</textarea>
+	<br>
+	<button id="qb1">Copy</button>
+	<script>
+	let text1;
+	text1 = document.getElementById("q1");
+	document.getElementById("qb1").onclick=function(){
+	text1.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script><br>
+	<p>2) Create a class NumberConverter with the required methods to convert between four major number systems (Decimal, Binary, Octal, and Hexadecimal).
+	Create a Main class and call a suitable method using NumberConverter object. 
+	Get the source and destination number system as a single character from the user along with the number in the main class. 
+	Call a suitable method in NumberConverter class to convert.</p>
+	<textarea id="q2" class="que2" readonly>
+import java.util.*;
+class NumberConverter{
+    NumberConverter(){
+    }
+        void decimalToOther(char to,int num){
+            if(to=='B'){
+                System.out.print(Integer.toBinaryString(num));
+            }
+            else if(to=='O'){
+                System.out.print(Integer.toOctalString(num));
+            }
+            else{
+                System.out.print(Integer.toHexString(num));
+            }
+        }
+        void OtherToDecimal(char from, String num){
+            if(from=='B'){
+                System.out.print(Integer.parseInt(num,2));
+            }
+            else if(from=='O'){
+                System.out.print(Integer.parseInt(num,8));
+            }
+            else if(from=='H'){
+                System.out.print(Integer.parseInt(num,16));
+            }
+        }
+        int Other(char from, String num){
+            int Dec=0;
+            if(from=='B'){
+                Dec=Integer.parseInt(num,2);
+            }
+            else if(from=='O'){
+                Dec=Integer.parseInt(num,8);
+            }
+            else{
+                Dec=Integer.parseInt(num,16);
+            }
+            return Dec;
+        }
+    
+}
+
+
+class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        NumberConverter obj1=new NumberConverter();
+        char from = sc.next().charAt(0);
+        char to = sc.next().charAt(0);
+        if(from=='D'){
+            int num=sc.nextInt();
+            obj1.decimalToOther(to,num);
+        }
+        else{
+            String s=sc.next();
+            if(to=='D'){
+                obj1.OtherToDecimal(from,s);
+                
+            }
+            else{
+                int Dec=obj1.Other(from,s);
+                obj1.decimalToOther(to,Dec);
+            }
+        }
+    }
+}</textarea>
+	<br>
+	<button id="qb2">Copy</button>
+	<script>
+	let text2;
+	text2 = document.getElementById("q2");
+	document.getElementById("qb2").onclick=function(){
+	text2.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script>
+	<br>
+	<p>3) Write a program to check whether the given character is a vowel or consonant.
+	Create two methods namely main method and alph. Create an object in the main method and access the alph method, that performs the above operation.</p>
+	<textarea id="q3" class="que3" readonly>
+import java.util.*;
+class vowel
+{
+    void alph(char c)
+    {
+        if( c =='a' || c =='e' || c=='i' || c=='o' || c=='u')
+        {
+            System.out.print(c+" :vowel");
+        }
+        else
+        {
+            System.out.print(c+" :consonant");
+        }
+    }
+    public static void main(String[] args)
+    {
+        Scanner in=new Scanner(System.in);
+        char a=in.next().charAt(0);
+        vowel n=new vowel();
+        n.alph(a);
+    }
+}</textarea>
+	<br>
+	<button id="qb3">Copy</button>
+	<script>
+	let text3;
+	text3 = document.getElementById("q3");
+	document.getElementById("qb3").onclick=function(){
+	text3.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script>
+	<br>
+	<p>4) Create a class with two methods one to read the elements of an array and the other to find all pairs of elements in an array whose sum is equal to a specified number.</p>
+	<textarea id="q4" class="que4" readonly>
+import java.util.*;
+class sample{
+    public static void main(String[] args){
+    Scanner sc=new Scanner(System.in);
+    int i,j,a=0;
+    int n=sc.nextInt();
+    int arr[]=new int[n];
+    for(i=0;i<n;i++)
+    {
+        arr[i]=sc.nextInt();
+    }
+    int num=sc.nextInt();
+    for(i=0;i<arr.length;i++)
+    {
+        for(j=0;j<arr.length;j++)
+        {
+            if((arr[i]+arr[j]==num))
+            {
+                System.out.println(arr[i]+" "+arr[j]);
+                a=1;
+            }
+        }
+    }
+    if(a!=1)
+    {
+        System.out.print("There is no pairs for the given sum.");
+    }
+}
+}</textarea>
+	<br>
+	<button id="qb4">Copy</button>
+	<script>
+	let text4;
+	text4 = document.getElementById("q4");
+	document.getElementById("qb4").onclick=function(){
+	text4.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script>
+	<br>
+	<p>5) BO Classes.
+We can use a BO class for computational purposes.
+The Stall owners wanted to calculate the total cost of a particular item type for the given timeline. 
+So add a feature in the application to calculate the total cost for the given timeline.</p>
+	<textarea id="q5" class="que5" readonly>
+import java.util.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+class Item{
+    static void data(String na,double a)
+    {
+        System.out.println(na);
+        System.out.println(a);
+    }
+    static void interest(double k,long a)
+    {
+        System.out.println(k);
+        double pl=a*k;
+        if(pl<0)
+        {
+            pl=pl*-1;
+        }
+        System.out.println(pl);
+    }
+    public static void main(String[] args) throws Exception{
+        Scanner scan=new Scanner(System.in);
+        String nam=scan.next();
+        double am=scan.nextDouble();
+        double it=scan.nextDouble();
+        String bd=scan.next();
+        String bs=scan.next();
+        SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy",Locale.ENGLISH);
+        Date first=sdf.parse(bd);
+        Date seconf=sdf.parse(bs);
+        long diff=first.getTime()-seconf.getTime();
+        TimeUnit time= TimeUnit.DAYS;
+        long diffs=time.convert(diff,TimeUnit.MILLISECONDS);
+        data(nam,am);
+        interest(it,diffs);
+        
+    }
+}</textarea>
+	<br>
+	<button id="qb5">Copy</button>
+	<script>
+	let text5;
+	text5 = document.getElementById("q5");
+	document.getElementById("qb5").onclick=function(){
+	text5.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script>
+	<br>
+	<br>
+	<h1 id="af" class="af">Abstract class and Final keyword</h1><br>
+	<h2>Concept Builder</h3>
+	<p>1) How to declare a abstract method?</p>
+	<p>Ans) public abstract void method();</p>
+	<p>2) A class cannot be,</p>
+	<p>Ans) abstract and final</p>
+	<p>3) What is the use of final keyword in Java?</p>
+	<p>Ans) All of the above</p>
+	<p>4) Abstract class is used,</p>
+	<p>Ans) When it doesn't make sense to have objects of that class.</p>
+	<p>5) What will be the output of the following Java program?</p>
+<textarea readonly style="width: 300px; height:120px;">class Main {
+public static void main(String args[]){
+   final int i;
+   i = 20;
+   System.out.println(i);
+ }
+}
+</textarea>
+	<p>Ans) 20</p>
+	<p>6) What will be the output of the following Java program?</p>
+<textarea readonly style="width: 300px; height:120px;">
+class Main {
+ public static void main(String args[]){
+    final int i;
+    i = 20;
+    i = 30;
+    System.out.println(i);
+ }
+}</textarea>
+	<p>Ans) Compiler Error</p><br>
+	<h2>Practice 2</h3>
+  <p>1) Create an abstract class "AbstractClass" which contains abstract methods getValue() and divisorSum(int n). Then write a class called Calculator which extends the abstract class.</p>
+  <textarea id="q6" class="que6" readonly>
+import java.util.Scanner;
+
+abstract class AbstractClass {
+    abstract int getValue();
+    abstract int divisorSum(int n);
+}
+
+class Calculator extends AbstractClass {
+    int getValue() {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        scanner.close();
+        return n;
+    }
+
+    int divisorSum(int n) {
+        int sum = 0;
+        for (int i = 1; i <= n; i++) {
+            if (n % i == 0) {
+                sum += i;
+            }
+        }
+        return sum;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Calculator calculator = new Calculator();
+        int n = calculator.getValue();
+        int sum = calculator.divisorSum(n);
+        System.out.println(sum);
+    }
+}</textarea>
+	<br>
+	<button id="qb6">Copy</button>
+	<script>
+	let text6;
+	text6 = document.getElementById("q6");
+	document.getElementById("qb6").onclick=function(){
+	text6.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script>
+	<br>
+	<p>2) Create abstract class marks with the following method<br>
+  void getPercentage();</p>
+  <textarea id="q7" class="que7" readonly>
+import java.util.Scanner;
+
+abstract class Marks {
+    abstract void getPercentage();
+}
+
+class A extends Marks {
+    private int marks1, marks2, marks3;
+    
+    A(int marks1, int marks2, int marks3) {
+        this.marks1 = marks1;
+        this.marks2 = marks2;
+        this.marks3 = marks3;
+    }
+    
+    void getPercentage() {
+        float percentage = (float) (marks1 + marks2 + marks3) / 3;
+        System.out.format("%.2f\n", percentage);
+    }
+}
+
+class B extends Marks {
+    private int marks1, marks2, marks3, marks4;
+    
+    B(int marks1, int marks2, int marks3, int marks4) {
+        this.marks1 = marks1;
+        this.marks2 = marks2;
+        this.marks3 = marks3;
+        this.marks4 = marks4;
+    }
+    
+    void getPercentage() {
+        float percentage = (float) (marks1 + marks2 + marks3 + marks4) / 4;
+        System.out.format("%.2f\n", percentage);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        int marks1 = scanner.nextInt();
+        int marks2 = scanner.nextInt();
+        int marks3 = scanner.nextInt();
+        
+        A a = new A(marks1, marks2, marks3);
+        a.getPercentage();
+        
+        int marks4 = scanner.nextInt();
+        int marks5 = scanner.nextInt();
+        int marks6 = scanner.nextInt();
+        int marks7 = scanner.nextInt();
+        
+        B b = new B(marks4, marks5, marks6, marks7);
+        b.getPercentage();
+        
+        scanner.close();
+    }
+}
+</textarea>
+	<br>
+	<button id="qb7">Copy</button>
+	<script>
+	let text7;
+	text7 = document.getElementById("q7");
+	document.getElementById("qb7").onclick=function(){
+	text7.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script>
+	<br>
+	<p>3) Create an abstract class Shape with the following methods<br>abstract void rectangleArea();<br>abstract void squareArea();<br>abstract void circleArea();</p>
+  <textarea id="q8" class="que8" readonly>
+import java.util.Scanner;
+
+abstract class Shape {
+    abstract void rectangleArea();
+    abstract void squareArea();
+    abstract void circleArea();
+}
+
+class Area extends Shape {
+    private float length, breadth, side, radius;
+
+    Area(float length, float breadth, float side, float radius) {
+        this.length = length;
+        this.breadth = breadth;
+        this.side = side;
+        this.radius = radius;
+    }
+
+    void rectangleArea() {
+        float area = length * breadth;
+        System.out.println((int) area);
+    }
+
+    void squareArea() {
+        float area = side * side;
+        System.out.println((int) area);
+    }
+
+    void circleArea() {
+        double area = Math.PI * radius * radius;
+        System.out.format("%.2f\n", area);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        float length = scanner.nextFloat();
+        float breadth = scanner.nextFloat();
+        float side = scanner.nextFloat();
+        float radius = scanner.nextFloat();
+
+        Area area = new Area(length, breadth, side, radius);
+        area.rectangleArea();
+        area.squareArea();
+        area.circleArea();
+
+        scanner.close();
+    }
+}
+</textarea>
+	<br>
+	<button id="qb8">Copy</button>
+	<script>
+	let text8;
+	text8 = document.getElementById("q8");
+	document.getElementById("qb8").onclick=function(){
+	text8.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script>
+	<br>
+	<h2>Practice Exercise</h3>
+  <p>1)  Create an abstract class Complex.</p>
+  <textarea id="q9" class="que9" readonly>
+import java.util.*;
+
+abstract class Complex {
+     abstract float Real(float real1, float real2);
+
+     abstract float Imaginary(float imag1, float imag2);
+
+     abstract float Real1(float real1, float real2, float imag1, float imag2);
+
+     abstract float Imaginary1(float real1, float real2, float imag1, float imag2);
+}
+
+class Addition extends Complex {
+     float Real(float real1, float real2) {
+          return real1 + real2;
+     }
+
+     float Imaginary(float imag1, float imag2) {
+          return imag1 + imag2;
+     }
+
+     float Imaginary1(float real1, float real2, float imag1, float imag2) {
+          return 0;
+     }
+
+     float Real1(float real1, float real2, float imag1, float imag2) {
+          return 0;
+     }
+}
+
+class Subtraction extends Complex {
+     float Real(float real1, float real2) {
+          return real1 - real2;
+     }
+
+     float Imaginary(float imag1, float imag2) {
+          return imag1 - imag2;
+     }
+
+     float Imaginary1(float real1, float real2, float imag1, float imag2) {
+          return 0;
+     }
+
+     float Real1(float real1, float real2, float imag1, float imag2) {
+          return 0;
+     }
+}
+
+class Multiplication extends Complex {
+     float Real1(float real1, float real2, float imag1, float imag2) {
+          return ((real1 * real2) - (imag1 * imag2));
+     }
+
+     float Imaginary1(float real1, float real2, float imag1, float imag2) {
+          return ((real1 * imag2) + (imag1 * real2));
+     }
+
+     float Imaginary(float imag1, float imag2) {
+          return 0;
+     }
+
+     float Real(float real1, float real2) {
+          return 0;
+     }
+}
+
+class Division extends Complex {
+     float Real1(float real1, float real2, float imag1, float imag2) {
+          return (((real1 * real2) + (imag1 * imag2)) / ((real2 * real2) + (imag2 * imag2)));
+     }
+
+     float Imaginary1(float real1, float real2, float imag1, float imag2) {
+          return (((imag1 * real2) - (real1 * imag2)) / ((real2 * real2) + (imag2 * imag2)));
+     }
+
+     float Imaginary(float imag1, float imag2) {
+          return 0;
+     }
+
+     float Real(float real1, float real2) {
+          return 0;
+     }
+}
+
+class Main {
+     public static void main(String args[]) {
+          Scanner scan = new Scanner(System.in);
+          float real1 = scan.nextFloat();
+          float imag1 = scan.nextFloat();
+          float real2 = scan.nextFloat();
+          float imag2 = scan.nextFloat();
+          Complex b;
+          b = new Addition();
+          System.out.printf("Addition:\n\t%.4f", b.Real(real1, real2));
+          if (b.Imaginary(imag1, imag2) >= 0) {
+               System.out.print(" +");
+          } else {
+               System.out.print(" ");
+          }
+          System.out.printf("%.4f i", b.Imaginary(imag1, imag2));
+          b = new Subtraction();
+          System.out.printf("\nSubtraction:\n\t%.4f", b.Real(real1, real2));
+          if (b.Imaginary(imag1, imag2) >= 0) {
+               System.out.print(" +");
+          } else {
+               System.out.print(" ");
+          }
+          System.out.printf("%.4f i", b.Imaginary(imag1, imag2));
+          b = new Multiplication();
+          System.out.printf("\nMultiplication:\n\t%.4f", b.Real1(real1, real2, imag1, imag2));
+          if (b.Imaginary1(real1, real2, imag1, imag2) >= 0) {
+               System.out.print(" +");
+          } else {
+               System.out.print(" ");
+          }
+          System.out.printf("%.4f i", b.Imaginary1(real1, real2, imag1, imag2));
+          b = new Division();
+          System.out.printf("\nDivision:\n\t%.4f", b.Real1(real1, real2, imag1, imag2));
+          if (b.Imaginary1(real1, real2, imag1, imag2) >= 0) {
+               System.out.print(" +");
+          } else {
+               System.out.print(" ");
+          }
+          System.out.printf("%.4f i", b.Imaginary1(real1, real2, imag1, imag2));
+
+          scan.close();
+     }
+
+}</textarea>
+	<br>
+	<button id="qb9">Copy</button>
+	<script>
+	let text9;
+	text9 = document.getElementById("q9");
+	document.getElementById("qb9").onclick=function(){
+	text9.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script>
+	<br>
+	<p>2) Item details-Abstract class.</p>
+  <textarea id="q10" class="que10" readonly>
+import java.util.*;
+
+abstract class ItemType {
+     public abstract double calculateAmount();
+}
+
+class wooden extends ItemType {
+     private int noOfItems;
+     private double cost;
+
+     public int getNoOfItems() {
+          return noOfItems;
+     }
+
+     public void setNoOfItems(int noOfItems) {
+          this.noOfItems = noOfItems;
+     }
+
+     public double getCost() {
+          return cost;
+     }
+
+     public void setCost(double cost) {
+          this.cost = cost;
+     }
+
+     public wooden() {
+          this.noOfItems = 0;
+          this.cost = (double) 0;
+     }
+
+     public wooden(int noOfItems, double cost) {
+          this.noOfItems = noOfItems;
+          this.cost = cost;
+     }
+
+     public double calculateAmount() {
+          return noOfItems * cost;
+     }
+}
+
+class electronics extends ItemType {
+     private String type;
+     private double amount;
+
+     public String getType() {
+          return type;
+     }
+
+     public void setType(String type) {
+          this.type = type;
+     }
+
+     public double getAmount() {
+          return amount;
+     }
+
+     public void setAmount(double amount) {
+          this.amount = amount;
+     }
+
+     public electronics() {
+          this.type = null;
+          this.amount = (double) 0;
+     }
+
+     public electronics(String type, double amount) {
+          this.type = type;
+          this.amount = amount;
+     }
+
+     public double calculateAmount() {
+          double result = 0;
+          if (type.contains("Academics")) {
+               result = amount - (0.05 * amount);
+          } else if (type.contains("Commercial")) {
+               result = amount;
+          }
+          return result;
+     }
+}
+
+class code2 {
+     public static void main(String[] args) {
+          int choice;
+          Scanner scan = new Scanner(System.in);
+          choice = Integer.parseInt(scan.nextLine());
+          wooden w = new wooden();
+          electronics e = new electronics();
+          if (choice == 1) {
+               w.setNoOfItems(Integer.parseInt(scan.nextLine()));
+               w.setCost(Double.parseDouble(scan.nextLine()));
+               double res = w.calculateAmount();
+               System.out.println(res);
+          }
+          if (choice == 2) {
+               e.setType(scan.nextLine());
+               e.setAmount(Double.parseDouble(scan.nextLine()));
+               double orgAmount = e.calculateAmount();
+               System.out.println(orgAmount);
+          }
+
+          scan.close();
+     }
+}</textarea>
+	<br>
+	<button id="qb10">Copy</button>
+	<script>
+	let text10;
+	text10 = document.getElementById("q10");
+	document.getElementById("qb10").onclick=function(){
+	text10.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script>
+	<br>
+	<p>3) Calculate the perimeter of five different geometric shapes.</p>
+  <textarea id="q11" class="que11" readonly>
+import java.util.*;
+import java.lang.Math;
+
+abstract class maths {
+     abstract public void rectanglePerimeter();
+
+     abstract public void squarePerimeter();
+
+     abstract public void trianglePerimeter();
+
+     abstract public void trapezoidPerimeter();
+
+     abstract public void circlePerimeter();
+}
+
+class perimeter extends maths {
+     public int length;
+     public int breadth;
+     public int side;
+     public int t1;
+     public int t2;
+     public int t3;
+     public int tr1;
+     public int tr2;
+     public int tr3;
+     public int tr4;
+     public int radius;
+     public int[] peri = new int[5];
+
+     public void rectanglePerimeter() {
+          this.peri[0] = 2 * (length + breadth);
+          System.out.println(this.peri[0]);
+     }
+
+     public void squarePerimeter() {
+          this.peri[1] = 4 * side;
+          System.out.println(this.peri[1]);
+     }
+
+     public void trianglePerimeter() {
+          this.peri[2] = t1 + t2 + t3;
+          System.out.println(this.peri[2]);
+     }
+
+     public void trapezoidPerimeter() {
+          this.peri[3] = tr1 + tr2 + tr3 + tr4;
+          System.out.println(this.peri[3]);
+     }
+
+     public void circlePerimeter() {
+          this.peri[4] = (int) Math.PI * 2 * radius;
+          System.out.println(this.peri[4]);
+     }
+
+     public void calculateSum() {
+          int sum = 0, i;
+          for (i = 0; i < 5; i++) {
+               sum += this.peri[i];
+          }
+          System.out.println(sum);
+     }
+
+     public void sortPerimeter() {
+          Arrays.sort(this.peri);
+          for (int i = 0; i < 5; i++) {
+               System.out.print(this.peri[i] + " ");
+          }
+     }
+}
+
+class Main {
+     public static void main(String[] args)
+     {
+          perimeter p = new perimeter();
+          Scanner scan = new Scanner(System.in);
+
+          p.length = scan.nextInt();
+          p.breadth = scan.nextInt();
+          p.rectanglePerimeter();
+
+          p.side = scan.nextInt();
+          p.squarePerimeter();
+
+          p.t1 = scan.nextInt();
+          p.t2 = scan.nextInt();
+          p.t3 = scan.nextInt();
+          p.trianglePerimeter();
+
+          p.tr1 = scan.nextInt();
+          p.tr2 = scan.nextInt();
+          p.tr3 = scan.nextInt();
+          p.tr4 = scan.nextInt();
+          p.trapezoidPerimeter();
+
+          p.radius = scan.nextInt();
+          p.circlePerimeter();
+
+          p.calculateSum();
+          p.sortPerimeter();
+
+          scan.close();
+     }
+}</textarea>
+	<br>
+	<button id="qb11">Copy</button>
+	<script>
+	let text11;
+	text11 = document.getElementById("q11");
+	document.getElementById("qb11").onclick=function(){
+	text11.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script>
+	<br>
+	<p>4)  Create an abstract class accounts.</p>
+  <textarea id="q12" class="que12" readonly>
+import java.util.*;
+
+abstract class Accounts {
+     public int balance;
+     public int accno;
+     public String name;
+     public String address;
+
+     abstract public void withdrawl(int amount);
+
+     abstract public void deposit(int amount);
+
+     public Accounts(int balance, int accno, String name, String address) {
+          this.balance = balance;
+          this.accno = accno;
+          this.name = name;
+          this.address = address;
+     }
+
+     public void display() {
+          System.out.print(this.accno + " ");
+          System.out.print(this.name + " ");
+          System.out.print(this.balance + " ");
+          System.out.print(this.address);
+     }
+}
+
+class SavingsAccount extends Accounts {
+     int roi;
+
+     public SavingsAccount(int balance, int accno, String name, String address) {
+          super(balance, accno, name, address);
+     }
+
+     public void setRoi(int r) {
+          this.roi = r;
+     }
+
+     public int getRoi() {
+          return roi;
+     }
+
+     public void calcamt(int balance) {
+          int interestAmount = (int) balance * roi;
+          // System.out.println(interestAmount);
+          interestAmount /= 100;
+          int finalAmount = balance + interestAmount;
+          System.out.println(finalAmount);
+     }
+
+     public void display() {
+          System.out.print(this.accno + " ");
+          System.out.print(this.name + " ");
+          System.out.print(this.balance + " ");
+          System.out.println(this.address);
+     }
+
+     public void deposit(int amt) {
+          int res1 = this.balance + amt;
+          System.out.println(res1);
+     }
+
+     public void withdrawl(int amt) {
+          int res2 = this.balance - amt;
+          System.out.println(res2);
+     }
+}
+
+class CurrentAccount extends Accounts {
+     int draftLimit;
+
+     public CurrentAccount(int balance, int accno, String name, String address) {
+          super(balance, accno, name, address);
+     }
+
+     public void setDraftLimit(int dl) {
+          this.draftLimit = dl;
+     }
+
+     public int getDraftLimit() {
+          return draftLimit;
+     }
+
+     public void display() {
+          System.out.print(this.accno + " ");
+          System.out.print(this.name + " ");
+          System.out.print(this.balance + " ");
+          System.out.println(this.address);
+          System.out.println(this.draftLimit);
+     }
+
+     public void deposit(int amt) {
+          int res1 = this.balance + amt;
+          System.out.println(res1);
+     }
+
+     public void withdrawl(int amt) {
+          int res2 = this.balance - amt;
+          System.out.println(res2);
+     }
+}
+
+class Main {
+     public static void main(String[] args) {
+          Scanner scan = new Scanner(System.in);
+          int accno = Integer.parseInt(scan.nextLine());
+          int balance = Integer.parseInt(scan.nextLine());
+          String name = scan.nextLine();
+          String address = scan.nextLine();
+          int type = Integer.parseInt(scan.nextLine());
+
+          if (type == 1)
+          {
+               SavingsAccount s = new SavingsAccount(balance, accno, name, address);
+               s.setRoi(Integer.parseInt(scan.nextLine()));
+               s.display();
+               s.calcamt(balance);
+
+               int dw = Integer.parseInt(scan.nextLine());
+               int amt = Integer.parseInt(scan.nextLine());
+
+               if (dw == 1)
+               {
+                    s.deposit(amt);
+               }
+
+               if (dw == 2)
+               {
+                    s.withdrawl(amt);
+               }
+          }
+
+          if (type == 2)
+          {
+               CurrentAccount c = new CurrentAccount(balance, accno, name, address);
+               c.setDraftLimit(Integer.parseInt(scan.nextLine()));
+               c.display();
+
+               int dw1 = Integer.parseInt(scan.nextLine());
+               int amt1 = Integer.parseInt(scan.nextLine());
+
+               if (dw1 == 1)
+               {
+                    c.deposit(amt1);
+               }
+
+               if (dw1 == 2)
+               {
+                    c.withdrawl(amt1);
+               }
+          }
+
+          scan.close();
+     }
+}</textarea>
+	<br>
+	<button id="qb12">Copy</button>
+	<script>
+	let text12;
+	text12 = document.getElementById("q12");
+	document.getElementById("qb12").onclick=function(){
+	text12.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script>
+	<br>
+	<p>5)  Consider the Banking Scenario.</p>
+  <textarea id="q13" class="que13" readonly>
+import java.util.*;
+import java.text.*;
+import java.text.SimpleDateFormat;
+
+abstract class Account {
+     String name;
+     int number;
+     int balance;
+     Date startDate;
+
+     public Account(String name, int number, int balance, Date startDate) {
+          this.name = name;
+          this.number = number;
+          this.balance = balance;
+          this.startDate = startDate;
+     }
+
+     abstract public double calculateInterest(Date dueDate);
+}
+
+class CurrentAccount extends Account {
+     public CurrentAccount(String name, int number, int balance, Date startDate) {
+          super(name, number, balance, startDate);
+     }
+
+     public double calculateInterest(Date dueDate) {
+          double interest;
+          interest = (balance * 5 * (monthsDifference(startDate,
+                    dueDate) / 12)) / 100;
+          return interest;
+     }
+
+     public int monthsDifference(Date startDate, Date endDate) {
+          Calendar c1 = new GregorianCalendar();
+          c1.setTime(startDate);
+          Calendar c2 = new GregorianCalendar();
+          c2.setTime(endDate);
+          int ans = (c2.get(c2.YEAR) - c1.get(c1.YEAR)) * 12;
+          ans += c2.get(c2.MONTH) - c1.get(c1.MONTH);
+          return ans;
+     }
+}
+
+class SavingsAccount extends Account {
+     public SavingsAccount(String name, int number, int balance, Date startDate) {
+          super(name, number, balance, startDate);
+     }
+
+     public double calculateInterest(Date dueDate) {
+          double interest;
+          interest = (balance * 12 * (monthsDifference(startDate,
+                    dueDate) / 12)) / 100;
+          return interest;
+     }
+
+     public int monthsDifference(Date startDate, Date endDate) {
+          Calendar c1 = new GregorianCalendar();
+          c1.setTime(startDate);
+          Calendar c2 = new GregorianCalendar();
+          c2.setTime(endDate);
+          int ans = (c2.get(c2.YEAR) - c1.get(c1.YEAR)) * 12;
+          ans += c2.get(c2.MONTH) - c1.get(c1.MONTH);
+          return ans;
+     }
+}
+
+class AccountsMain {
+     public static void main(String args[]) throws ParseException
+     {
+          Scanner scan = new Scanner(System.in);
+          int type = Integer.parseInt(scan.nextLine());
+          String name = scan.nextLine();
+          int number = Integer.parseInt(scan.nextLine());
+          int balance = Integer.parseInt(scan.nextLine());
+          String dateString = scan.nextLine();
+          DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+          Date startDate = formatter.parse(dateString);
+
+          dateString = scan.nextLine();
+          Date dueDate = formatter.parse(dateString);
+
+          if (type == 1) {
+               SavingsAccount sObj = new SavingsAccount(name, number, balance,
+                         startDate);
+               System.out.println(sObj.calculateInterest(dueDate));
+          }
+
+          else {
+               CurrentAccount cObj = new CurrentAccount(name, number, balance,
+                         startDate);
+               System.out.println(cObj.calculateInterest(dueDate));
+          }
+
+          scan.close();
+     }
+}</textarea>
+	<br>
+	<button id="qb13">Copy</button>
+	<script>
+	let text13;
+	text13 = document.getElementById("q13");
+	document.getElementById("qb13").onclick=function(){
+	text13.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script>
+	<br>
+	<h2>Lab_Exercise CSE207_11</h3>
+  <p>1) Abstract class Book</p>
+  <textarea id="q14" class="que14" readonly>
+import java.util.*;
+
+abstract class Book{
+    String title;
+    abstract void setTitle(String s);
+    String getTitle()
+    {
+        return title;
+    }
+}
+
+class MyBook extends Book{
+    @Override
+    void setTitle(String s)
+    {
+        this.title=s;
+    }
+}
+
+class Main{
+    public static void main(String[] args)
+    {
+        Scanner scan=new Scanner(System.in);
+        String title=scan.nextLine();
+        MyBook novel=new MyBook();
+        novel.setTitle(title);
+        System.out.println("The title is: "+novel.getTitle());
+        
+        scan.close();
+    }
+}</textarea>
+	<br>
+	<button id="qb14">Copy</button>
+	<script>
+	let text14;
+	text14 = document.getElementById("q14");
+	document.getElementById("qb14").onclick=function(){
+	text14.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script>
+	<br>
+	<p>2) Class MyCalculator and interface AdvancedArithmetic</p>
+  <textarea id="q15" class="que15" readonly>
+import java.util.*;
+
+interface AdvancedArithmetic{
+    int divisorSum(int n);
+}
+
+class MyCalculator implements AdvancedArithmetic{
+    public int divisorSum(int n){
+        int sum=0;
+        for (int i=1; i<=n; i++)
+        {
+            if (n%i==0)
+            {
+                sum+=i;
+            }
+        }
+        
+        return sum;
+    }
+}
+
+class Main{
+    public static void main(String[] args)
+    {
+        MyCalculator calc=new MyCalculator();
+        System.out.print("I implemented: ");
+        ImplementedInterfaceNames(calc);
+        
+        Scanner scan=new Scanner(System.in);
+        int num=scan.nextInt();
+        System.out.println(calc.divisorSum(num));
+        
+        scan.close();
+    }
+
+    static void ImplementedInterfaceNames(Object obj){
+        Class[] theInterfaces=obj.getClass().getInterfaces();
+        for (int i=0; i<theInterfaces.length; i++)
+        {
+            String interfaceName=theInterfaces[i].getName();
+            System.out.println(interfaceName);
+        }
+    }
+}</textarea>
+	<br>
+	<button id="qb15">Copy</button>
+	<script>
+	let text15;
+	text15 = document.getElementById("q15");
+	document.getElementById("qb15").onclick=function(){
+	text15.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script>
+	<br>
+	<p>3) class pizza class cake class FoodFactory interface Food</p>
+  <textarea id="q16" class="que16" readonly>
+import java.util.*;
+
+interface Food{
+    public String getType();
+}
+
+class Pizza implements Food{
+    public String getType()
+    {
+        return "Someone ordered a Fast Food!";
+    }
+}
+
+class Cake implements Food{
+    public String getType(){
+        return "Someone ordered a Dessert!";
+    }
+}
+
+class FoodFactory{
+    public Food getFood(String order){
+        if (order.equalsIgnoreCase("Pizza"))
+        {
+            return new Pizza();
+        }
+        else if(order.equalsIgnoreCase("Cake"))
+        {
+            return new Cake();
+        }
+        
+        return null;
+    }
+}
+
+class Main{
+    public static void main(String[] args)
+    {
+        Scanner scan=new Scanner(System.in);
+        
+        FoodFactory obj=new FoodFactory();
+        
+        Food food=obj.getFood(scan.nextLine());
+        System.out.println("The factory returned "+food.getClass());
+        
+        System.out.println(food.getType());
+        
+        scan.close();
+    }
+}</textarea>
+	<br>
+	<button id="qb16">Copy</button>
+	<script>
+	let text16;
+	text16 = document.getElementById("q16");
+	document.getElementById("qb16").onclick=function(){
+	text16.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script>
+	<br>
+	<h1 id="if" class="if">Interface</h1><br>
+	<h2>Concept Builder</h3>
+  <p>1) Interfaces can have constructors.</p>
+	<p>Ans) False</p>
+	<p>2) Which of the following is the correct syntax for implementing an interface A by class B?</p>
+	<p>Ans) B implements A</p>
+	<p>3) _______ keyword is used to define interfaces in Java.</p>
+	<p>Ans) interface</p>
+	<p>4) Which of the following is a false statement about interface?</p>
+	<p>Ans) It can be instantiated, means, we can create an object of an interface</p>
+	<p>5) Determine the output of the code.</p>
+<textarea readonly style="width: 300px; height:120px;">class Main {
+interface A { }
+class C { }
+class D extends C { }
+class B extends D implements A { }
+public class Test extends Thread
+{
+    public static void main(String[] args)
+    {
+        B b = new B();
+        if (b instanceof A)
+        System.out.println("b is an instance of A");
+        if (b instanceof C)
+        System.out.println("b is an instance of C");
+    }
+}
+</textarea>
+	<p>Ans) b is an instance of A<br>b is an instance of C</p>
+	<h2>Lab_Exercise</h3>
+  <p>1) Create an inteface rotate with the given functions.</p>
+  <textarea id="q17" class="que17" readonly>
+import java.util.Scanner;
+
+interface Rotate {
+    void leftRotate(int arr[], int d, int n);
+    void leftRotatebyOne(int arr[], int n);
+    void printArray(int arr[], int n);
+}
+
+class Main implements Rotate {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+        Main main = new Main();
+        main.leftRotate(arr, 1, n);
+        main.printArray(arr, n);
+    }
+
+ 
+    public void leftRotate(int[] arr, int d, int n) {
+        for (int i = 0; i < d; i++) {
+            leftRotatebyOne(arr, n);
+        }
+    }
+
+    public void leftRotatebyOne(int[] arr, int n) {
+        int temp = arr[0];
+        for (int i = 1; i < n; i++) {
+            arr[i - 1] = arr[i];
+        }
+        arr[n - 1] = temp;
+    }
+
+   
+    public void printArray(int[] arr, int n) {
+        for (int i = 0; i < n; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+}
+</textarea>
+	<br>
+	<button id="qb17">Copy</button>
+	<script>
+	let text17;
+	text17 = document.getElementById("q17");
+	document.getElementById("qb17").onclick=function(){
+	text17.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script>
+	<br>
+	<p>2) Program to count a minimum number of front moves to sort an array.</p>
+  <textarea id="q18" class="que18" readonly>
+import java.util.Scanner;
+
+interface MinimumFrontMovesCounter {
+    int countMinimumFrontMoves(int[] arr);
+}
+
+class MinimumFrontMovesCounterImpl implements MinimumFrontMovesCounter {
+
+    public int countMinimumFrontMoves(int[] arr) {
+        int n = arr.length;
+        int minMoves = 0;
+        for (int i = n-1; i >= 0; i--) {
+            if (arr[i] == n) {
+                n--;
+            } else {
+                minMoves++;
+            }
+        }
+        return minMoves;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+        MinimumFrontMovesCounter counter = new MinimumFrontMovesCounterImpl();
+        int minMoves = counter.countMinimumFrontMoves(arr);
+        System.out.println(minMoves);
+    }
+}
+</textarea>
+	<br>
+	<button id="qb18">Copy</button>
+	<script>
+	let text18;
+	text18 = document.getElementById("q18");
+	document.getElementById("qb18").onclick=function(){
+	text18.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script>
+	<br>
+	<p>3) Create an interface ShapeCalculator.</p>
+  <textarea id="q19" class="que19" readonly>
+import java.util.*;
+interface ShapeCalc
+{
+    void calc(int n);
+    
+}
+class Square implements ShapeCalc
+{
+    int a,p;
+    public void calc(int s){
+        a=s*s;
+        p=4*s;
+        System.out.print(a);
+        System.out.print(" ");
+        System.out.print(p);
+        System.out.print(" ");
+        
+    }
+}
+class Circle implements ShapeCalc{
+    double a,p;
+    public void calc(int r){
+        a=3.14*r*r;
+        p=3.14*2*r;
+        System.out.println();
+        System.out.printf("%.2f",a);
+        System.out.printf(" ");
+        System.out.printf("%.2f",p);
+        
+    }
+}
+class Nikh{
+    public static void main(String args[]){
+        int n;
+        Scanner sc=new Scanner(System.in);
+        n=sc.nextInt();
+        Square s=new Square();
+        s.calc(n);
+        Circle c=new Circle();
+        c.calc(n);
+    }
+}</textarea>
+	<br>
+	<button id="qb19">Copy</button>
+	<script>
+	let text19;
+	text19 = document.getElementById("q19");
+	document.getElementById("qb19").onclick=function(){
+	text19.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script>
+	<br>
+	<h2>Practice Exercise</h3>
+  <p>1)  Define an Interface Growing.</p>
+  <textarea id="q20" class="que20" readonly>
+//Define an Interface Growing
+import java.util.*;
+import java.util.Arrays;
+
+interface Growing{
+void isGrowing();
+}
+
+class GrowingNumber implements Growing {
+     int num;
+
+     public GrowingNumber(int i) {
+          num = i;
+     }
+
+     public void isGrowing() {
+          // int num=423;
+          boolean flag = false;
+          int currentDigit = num % 10;
+          num = num / 10;
+          while (num > 0) {
+               if (currentDigit <= num % 10) {
+                    flag = true;
+                    break;
+               }
+               currentDigit = num % 10;
+               num = num / 10;
+          }
+          if (flag) {
+               System.out.println("Not growing number");
+          } else {
+               System.out.println("Growing number");
+          }
+     }
+}
+
+class GrowingString implements Growing {
+     String s1;
+
+     public GrowingString(String string) {
+          s1 = string;
+     }
+
+     public void isGrowing() {
+          int n = s1.length();
+          char c[] = new char[n];
+
+          for (int i = 0; i < n; i++) {
+               c[i] = s1.charAt(i);
+          }
+          Arrays.sort(c);
+          boolean flag = true;
+          for (int i = 0; i < n; i++)
+               if (c[i] != s1.charAt(i))
+                    flag = false;
+
+          if (flag) {
+               System.out.println("Growing string");
+          } else {
+               System.out.println("Not growing string");
+          }
+     }
+}
+
+class Main {
+     public static void main(String args[]) {
+          Scanner scan = new Scanner(System.in);
+          int i = scan.nextInt();
+          String str = scan.nextLine();
+          // System.out.println(i + str);
+          GrowingNumber x = new GrowingNumber(i);
+          GrowingString s = new GrowingString(str);
+          x.isGrowing();
+          // System.out.println(str);
+          s.isGrowing();
+
+          scan.close();
+     }
+}</textarea>
+	<br>
+	<button id="qb20">Copy</button>
+	<script>
+	let text20;
+	text20 = document.getElementById("q20");
+	document.getElementById("qb20").onclick=function(){
+	text20.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script>
+	<br>
+	<p>2) Create an Interface Product.</p>
+  <textarea id="q21" class="que21" readonly>
+//Create an Interface Product
+import java.util.*;
+
+interface Product
+{
+ void ProductDetails();
+void show_Bill();
+}
+
+class Customer {
+     static Scanner sc;
+     String C_Name;
+     int C_ID;
+     String P_Name;
+     int P_Cost;
+
+     void getdetails() {
+          C_ID = sc.nextInt();
+          sc.nextLine();
+          C_Name = sc.nextLine();
+     }
+
+     void showdetails() {
+          System.out.println("ID:" + C_ID);
+          System.out.println("NAME:" + C_Name);
+     }
+}
+
+class OrderOnline extends Customer implements Product {
+     int no_of_items;
+     int total_Bill = 0;
+
+     public void ProductDetails() {
+          no_of_items = sc.nextInt();
+
+          for (int i = 0; i < no_of_items; i++) {
+               sc.nextLine();
+               P_Name = sc.nextLine();
+               P_Cost = sc.nextInt();
+               total_Bill += P_Cost;
+          }
+          if (total_Bill > 10000 && total_Bill <= 30000)
+               total_Bill += (total_Bill * 5 / 100);
+          else if (total_Bill > 30000 && total_Bill <= 50000)
+               total_Bill += (total_Bill * 7 / 100);
+          else if (total_Bill > 50000)
+               total_Bill += (total_Bill * 9 / 100);
+     }
+
+     public void show_Bill() {
+          System.out.println("Bill:" + total_Bill);
+     }
+
+     public static void main(String[] arg) {
+          int no_of_orders;
+          sc = new Scanner(System.in);
+          no_of_orders = sc.nextInt();
+          OrderOnline[] orders = new OrderOnline[no_of_orders];
+          for (int i = 0; i < no_of_orders; i++) {
+               orders[i] = new OrderOnline();
+               orders[i].getdetails();
+               orders[i].ProductDetails();
+          }
+          for (int i = 0; i < no_of_orders; i++) {
+               orders[i].showdetails();
+               orders[i].show_Bill();
+          }
+     }
+}</textarea>
+	<br>
+	<button id="qb21">Copy</button>
+	<script>
+	let text21;
+	text21 = document.getElementById("q21");
+	document.getElementById("qb21").onclick=function(){
+	text21.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script>
+	<br>
+	<p>3) Program to move all the Uppercase Characters to the end of the string.</p>
+  <textarea id="q22" class="que22" readonly>
+//Program to move all the Uppercase Characters to the end of the string.
+import java.util.*;
+
+interface Case{
+ String move(String s);
+}
+
+class Main implements Case {
+
+     public String move(String str) {
+          int len = str.length();
+          String low = "";
+          String upr = "";
+          char ch;
+          for (int i = 0; i < len; i++) {
+               ch = str.charAt(i);
+               if (ch >= 'A' && ch <= 'Z') {
+                    upr += ch;
+               } else {
+                    low += ch;
+               }
+          }
+          return low + upr;
+     }
+
+     public static void main(String args[]) {
+          String str;
+          Scanner scan = new Scanner(System.in);
+          str = scan.nextLine();
+          Main obj = new Main();
+          obj.move(str);
+          System.out.println(obj.move(str));
+
+          scan.close();
+     }
+}</textarea>
+	<br>
+	<button id="qb22">Copy</button>
+	<script>
+	let text22;
+	text22 = document.getElementById("q22");
+	document.getElementById("qb22").onclick=function(){
+	text22.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script>
+	<br>
+	<p>4) Create an Interface that has the following method - void diagonalIsMinMax(int a[][]);</p>
+  <textarea id="q23" class="que23" readonly>
+//Create an Interface that has the following method - void diagonalIsMinMax(int a[][]);
+import java.util.*;
+
+interface Matrix{
+ void diagonalsMinMax(int a[][]);
+}
+
+class Main implements Matrix {
+     public void diagonalsMinMax(int[][] mat) {
+          int n = mat.length;
+          if (n == 0)
+               return;
+          int principalMin = mat[0][0], principalMax = mat[0][0];
+          int secondaryMin = mat[n - 1][0], secondaryMax = mat[n - 1][0];
+
+          for (int i = 0; i < n; i++) {
+               for (int j = 0; j < n; j++) {
+                    if (i == j) {
+                         if (mat[i][j] < principalMin) {
+                              principalMin = mat[i][j];
+                         }
+                         if (mat[i][j] > principalMax) {
+                              principalMax = mat[i][j];
+                         }
+                    }
+                    if ((i + j) == (n - 1)) {
+                         if (mat[i][j] < secondaryMin) {
+                              secondaryMin = mat[i][j];
+                         }
+                         if (mat[i][j] > secondaryMax) {
+                              secondaryMax = mat[i][j];
+                         }
+                    }
+               }
+          }
+
+          System.out.println("Smallest Element - 1: "
+                    + principalMin);
+          System.out.println("Greatest Element - 1: "
+                    + principalMax);
+
+          System.out.println("Smallest Element - 2: "
+                    + secondaryMin);
+          System.out.println("Greatest Element - 2: "
+                    + secondaryMax);
+     }
+
+     static public void main(String[] args) {
+          int n;
+          Scanner scan = new Scanner(System.in);
+          n = scan.nextInt();
+          int matrix[][] = new int[n][n];
+          for (int i = 0; i < n; i++) {
+               for (int j = 0; j < n; j++) {
+                    matrix[i][j] = scan.nextInt();
+               }
+          }
+          Main obj = new Main();
+          obj.diagonalsMinMax(matrix);
+
+          scan.close();
+     }
+}</textarea>
+	<br>
+	<button id="qb23">Copy</button>
+	<script>
+	let text23;
+	text23 = document.getElementById("q23");
+	document.getElementById("qb23").onclick=function(){
+	text23.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script>
+	<br>
+	<p>5) Write a simple program to demonstrate the interface.</p>
+  <textarea id="q24" class="que24" readonly>
+//Write a simple program to demonstrate the interface
+import java.util.*;
+// import java.io.*;
+
+interface in1 {
+     final int a = 10;
+
+     void display();
+}
+
+class testClass implements in1 {
+     public void display() {
+          String sr;
+          Scanner scan = new Scanner(System.in);
+          sr = scan.nextLine();
+          System.out.println(sr);
+
+          scan.close();
+     }
+
+     public static void main(String[] args) {
+          testClass t = new testClass();
+          t.display();
+          System.out.println(a);
+     }
+}</textarea>
+	<br>
+	<button id="qb24">Copy</button>
+	<script>
+	let text24;
+	text24 = document.getElementById("q24");
+	document.getElementById("qb24").onclick=function(){
+	text24.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script>
+	<br>
+    <h1 id="ih1" class="ih1">Inheritance 1</h1><br>
+    <h2>Lab Exercises</h2>
+    <p>1) Account Details</p>
+  <textarea id="q25" class="que25" readonly>
+import java.util.Scanner;
+
+class Account {
+    protected String accountNumber;
+    protected double balance;
+    protected String accountHolderName;
+
+    public Account(String accountNumber, double balance, String accountHolderName) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+        this.accountHolderName = accountHolderName;
+    }
+}
+
+class SavingAccount extends Account {
+    protected double minimumBalance;
+
+    public SavingAccount(String accountNumber, double balance, String accountHolderName, double minimumBalance) {
+        super(accountNumber, balance, accountHolderName);
+        this.minimumBalance = minimumBalance;
+    }
+}
+
+class FixedAccount extends SavingAccount {
+    public int lockingPeriod;
+
+    public FixedAccount(String accountNumber, double balance, String accountHolderName, double minimumBalance, int lockingPeriod) {
+        super(accountNumber, balance, accountHolderName, minimumBalance);
+        this.lockingPeriod = lockingPeriod;
+    }
+}
+
+class AccountBO {
+    public FixedAccount getFixedAccountDetail(String fixedAccountDetails) {
+        String[] details = fixedAccountDetails.split(",");
+        FixedAccount fixedAccount = new FixedAccount(details[0], Double.parseDouble(details[1]), details[2], Double.parseDouble(details[3]), Integer.parseInt(details[4]));
+        return fixedAccount;
+    }
+
+    public void printFixedAccountDetails(FixedAccount fixedAccount) {
+        System.out.format("%-20s %-10s %-20s %-20s %s\n", "Account Number", "Balance", "Account holder name", "Minimum balance", "Locking period");
+        System.out.format("%-20s %-10.2f %-20s %d %d\n", fixedAccount.accountNumber, fixedAccount.balance, fixedAccount.accountHolderName, (int)fixedAccount.minimumBalance, fixedAccount.lockingPeriod);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String fixedAccountDetails = scanner.nextLine();
+
+        AccountBO accountBO = new AccountBO();
+        FixedAccount fixedAccount = accountBO.getFixedAccountDetail(fixedAccountDetails);
+        accountBO.printFixedAccountDetails(fixedAccount);
+
+        scanner.close();
+    }
+}</textarea>
+    <br>
+    <button id="qb25">Copy</button>
+    <script>
+    let text25;
+    text25 = document.getElementById("q25");
+    document.getElementById("qb25").onclick=function(){
+    text25.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>2) Overriding-simple</p>
+  <textarea id="q26" class="que26" readonly>
+import java.util.Scanner;
+
+class Event {
+    protected String name;
+    protected String detail;
+    protected String ownerName;
+
+    public Event(String name, String detail, String ownerName) {
+        this.name = name;
+        this.detail = detail;
+        this.ownerName = ownerName;
+    }
+
+    public double projectedRevenue() {
+        return 0.0;
+    }
+}
+
+class Exhibition extends Event {
+    private int numberOfStalls;
+
+    public Exhibition(String name, String detail, String ownerName, int numberOfStalls) {
+        super(name, detail, ownerName);
+        this.numberOfStalls = numberOfStalls;
+    }
+
+    public double projectedRevenue() {
+        return numberOfStalls * 10000.0;
+    }
+
+    public int getNumberOfStalls() {
+        return numberOfStalls;
+    }
+
+    public void setNumberOfStalls(int numberOfStalls) {
+        this.numberOfStalls = numberOfStalls;
+    }
+}
+
+class StageEvent extends Event {
+    private int numberOfShows;
+    private int seatsPerShow;
+
+    public StageEvent(String name, String detail, String ownerName, int numberOfShows, int seatsPerShow) {
+        super(name, detail, ownerName);
+        this.numberOfShows = numberOfShows;
+        this.seatsPerShow = seatsPerShow;
+    }
+
+    public double projectedRevenue() {
+        return numberOfShows * seatsPerShow * 50.0;
+    }
+
+    public int getNumberOfShows() {
+        return numberOfShows;
+    }
+
+    public void setNumberOfShows(int numberOfShows) {
+        this.numberOfShows = numberOfShows;
+    }
+
+    public int getSeatsPerShow() {
+        return seatsPerShow;
+    }
+
+    public void setSeatsPerShow(int seatsPerShow) {
+        this.seatsPerShow = seatsPerShow;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        
+        
+        String name = scanner.nextLine();
+        
+        String detail = scanner.nextLine();
+       
+        String ownerName = scanner.nextLine();
+
+        int choice = scanner.nextInt();
+      double revenue = 0.0;
+        if (choice == 1) {
+           
+            int numberOfStalls = scanner.nextInt();
+            Exhibition exhibition = new Exhibition(name, detail, ownerName, numberOfStalls);
+            revenue = exhibition.projectedRevenue();
+        } else if (choice == 2) {
+            
+            int numberOfShows = scanner.nextInt();
+           
+            int seatsPerShow = scanner.nextInt();
+            StageEvent stageEvent = new StageEvent(name, detail, ownerName, numberOfShows, seatsPerShow);
+            revenue = stageEvent.projectedRevenue();
+        } else {
+            System.out.println("Invalid choice");
+        }
+
+        
+        System.out.println(revenue);
+    }
+}</textarea>
+    <br>
+    <button id="qb26">Copy</button>
+    <script>
+    let text26;
+    text26 = document.getElementById("q26");
+    document.getElementById("qb26").onclick=function(){
+    text26.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>3) Write a program such that it should have three classes, Person and Student and the Main class where Person is the base class and Student is the derived class. Student class should have the following:</p>
+  <textarea id="q27" class="que27" readonly>
+import java.util.Scanner;
+
+class Person {
+    protected String firstName;
+    protected String lastName;
+    protected int idNumber;
+
+    
+    Person(String firstName, String lastName, int idNumber){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.idNumber = idNumber;
+    }
+
+    
+    public void printPerson(){
+        System.out.println("Name: " + lastName + " " + firstName);
+        System.out.println("ID: " + idNumber);
+    }
+}
+
+class Student extends Person {
+    private int[] testScores;
+
+    
+    Student(String firstName, String lastName, int idNumber, int[] testScores){
+        super(firstName, lastName, idNumber);
+        this.testScores = testScores;
+    }
+
+    
+    public char calculate(){
+        int sum = 0;
+        for(int i=0; i<testScores.length; i++){
+            sum += testScores[i];
+        }
+        int average = sum / testScores.length;
+
+        if(average >= 90 && average <= 100){
+            return 'O';
+        } else if(average >= 80 && average < 90){
+            return 'E';
+        } else if(average >= 70 && average < 80){
+            return 'A';
+        } else if(average >= 55 && average < 70){
+            return 'P';
+        } else if(average >= 40 && average < 55){
+            return 'D';
+        } else {
+            return 'T';
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String firstName = scanner.nextLine();
+        String lastName = scanner.nextLine();
+        int idNumber = scanner.nextInt();
+        int numScores = scanner.nextInt();
+        int[] testScores = new int[numScores];
+        for(int i=0; i<numScores; i++){
+            testScores[i] = scanner.nextInt();
+        }
+        scanner.close();
+
+        Student student = new Student(firstName, lastName, idNumber, testScores);
+        student.printPerson();
+        System.out.println("Grade: " + student.calculate());
+    }
+}
+</textarea>
+    <br>
+    <button id="qb27">Copy</button>
+    <script>
+    let text27;
+    text27 = document.getElementById("q27");
+    document.getElementById("qb27").onclick=function(){
+    text27.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <h2>Practical Exercises</h2>
+    <p>1) GST Calculation</p>
+  <textarea id="q28" class="que28" readonly>
+//GST Calculation
+import java.util.*;
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+class Event {
+     public String name;
+     public String detail;
+     public String type;
+     public String ownerName;
+     public Double costPerDay;
+
+     public String getName() {
+          return name;
+     }
+
+     public void setName(String name) {
+          this.name = name;
+     }
+
+     public String getDetail() {
+          return detail;
+     }
+
+     public void setDetail(String detail) {
+          this.detail = detail;
+     }
+
+     public String getType() {
+          return type;
+     }
+
+     public void setType(String type) {
+          this.type = type;
+     }
+
+     public String getOwnerName() {
+          return ownerName;
+     }
+
+     public void setOwnerName(String ownerName) {
+          this.ownerName = ownerName;
+     }
+
+     public Double getCostPerDay() {
+          return costPerDay;
+     }
+
+     public void setCostPerDay(Double costPerDay) {
+          this.costPerDay = costPerDay;
+     }
+}
+
+class Exhibition extends Event {
+     public int noOfStall;
+
+     public Exhibition(String name, String detail, String type, String ownerName,
+               Double costPerDay, int noOfStall2) {
+          this.name = name;
+          this.detail = detail;
+          this.type = type;
+          this.ownerName = ownerName;
+          this.costPerDay = costPerDay;
+          this.noOfStall = noOfStall;
+     }
+
+     public Exhibition() {
+          this.name = null;
+          this.detail = null;
+          this.type = null;
+          this.ownerName = null;
+          this.costPerDay = (double) 0;
+          this.noOfStall = 0;
+     }
+
+     public int getNoOfStall() {
+          return noOfStall;
+     }
+
+     public void setNoOfStall(int noOfStall) {
+          this.noOfStall = noOfStall;
+     }
+}
+
+class StageEvent extends Event {
+     public int noOfSeats;
+
+     public StageEvent(String name, String detail, String type, String ownerName,
+               Double costPerDay, int noOfSeats2) {
+          this.name = name;
+          this.detail = detail;
+          this.type = type;
+          this.ownerName = ownerName;
+          this.costPerDay = costPerDay;
+          this.noOfSeats = noOfSeats;
+     }
+
+     public StageEvent() {
+          this.name = null;
+          this.detail = null;
+          this.type = null;
+          this.ownerName = null;
+          this.costPerDay = 0.0;
+          this.noOfSeats = 0;
+     }
+
+     public int getNoOfSeats() {
+          return noOfSeats;
+     }
+
+     public void setNoOfSeats(int noOfSeats) {
+          this.noOfSeats = noOfSeats;
+     }
+}
+
+class Main {
+     public static void main(String[] args) throws ParseException {
+          int n;
+          Scanner scan = new Scanner(System.in);
+          n = Integer.parseInt(scan.nextLine());
+          Exhibition ex = new Exhibition();
+          StageEvent se = new StageEvent();
+          DecimalFormat dd = new DecimalFormat("0.0");
+          if (n == 1) {
+               ex.setName(scan.nextLine());
+               ex.setDetail(scan.nextLine());
+               ex.setType(scan.nextLine());
+               ex.setOwnerName(scan.nextLine());
+               ex.setCostPerDay(Double.parseDouble(scan.nextLine()));
+               ex.setNoOfStall(Integer.parseInt(scan.nextLine()));
+               Exhibition ex1 = new Exhibition(ex.name, ex.detail, ex.type, ex.ownerName,
+                         ex.costPerDay, ex.noOfStall);
+               String date1 = scan.nextLine();
+               String date2 = scan.nextLine();
+               Date start = new SimpleDateFormat("dd/MM/yyyy").parse(date1);
+               Date end = new SimpleDateFormat("dd/MM/yyyy").parse(date2);
+               long diff = (start.getTime() - end.getTime()) / 86400000;
+               Double result = 0.05 * ex.costPerDay * diff;
+               System.out.println(dd.format(Math.abs(result)));
+          }
+          if (n == 2) {
+               se.setName(scan.nextLine());
+               se.setDetail(scan.nextLine());
+               se.setType(scan.nextLine());
+               se.setOwnerName(scan.nextLine());
+               se.setCostPerDay(Double.parseDouble(scan.nextLine()));
+               se.setNoOfSeats(Integer.parseInt(scan.nextLine()));
+               StageEvent se1 = new StageEvent(se.name, se.detail, se.type, se.ownerName,
+                         se.costPerDay, se.noOfSeats);
+               String date1 = scan.nextLine();
+               String date2 = scan.nextLine();
+               Date start = new SimpleDateFormat("dd/MM/yyyy").parse(date1);
+               Date end = new SimpleDateFormat("dd/MM/yyyy").parse(date2);
+               long diff = (start.getTime() - end.getTime()) / 86400000;
+               Double result = 0.15 * se.costPerDay * diff;
+               System.out.println(dd.format(Math.abs(result)));
+          }
+
+          scan.close();
+     }
+}
+</textarea>
+    <br>
+    <button id="qb28">Copy</button>
+    <script>
+    let text28;
+    text28 = document.getElementById("q28");
+    document.getElementById("qb28").onclick=function(){
+    text28.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>2) You are in an Online shopping portal. It has two types of members, Basic and Premium. Their relationship is shown in the inheritance diagram.</p>
+  <textarea id="q29" class="que29" readonly>
+import java.util.*;
+class Basic {
+    String name,city,gender;
+    int Age,Total_Bill_Amount;
+    Basic(String na,String city,String gender,int Age,int Tot){
+        this.name=na;
+        this.city=city;
+        this.gender=gender;
+        this.Age=Age;
+        this.Total_Bill_Amount=Tot;
+    }
+    void Display(){
+        System.out.println("Name: "+name);
+        System.out.println("City: "+city);
+        System.out.println("Age :"+Age);
+        System.out.println("Gender: "+gender);
+        System.out.println("Total Bill Amount: "+Total_Bill_Amount);
+    }
+    void calculateDiscount(){
+        int dis;
+        if(Total_Bill_Amount>1 && Total_Bill_Amount<=4999)
+            dis=100;
+        else if(Total_Bill_Amount>=5000 && Total_Bill_Amount<7499)
+            dis=250;
+        else if(Total_Bill_Amount>=7500 && Total_Bill_Amount<9999)
+            dis=500;
+        else if(Total_Bill_Amount>=10000 && Total_Bill_Amount<19999)
+            dis=750;
+        else if(Total_Bill_Amount>=20000 && Total_Bill_Amount<29999)
+            dis=1000;
+        else
+            dis=1500;
+        System.out.println("Discount: "+dis);
+
+    }
+}
+class Premium extends Basic{
+    int fee;
+    Premium(String na,String city,String gender,int Age,int Tot,int fee){
+        super(na,city,gender,Age,Tot);
+        this.fee=fee;
+    }
+    void calculateDiscount(){
+        if(fee>0){
+            int dis;
+            if(Total_Bill_Amount>1 && Total_Bill_Amount<=4999)
+                dis=200;
+            else if(Total_Bill_Amount>=5000 && Total_Bill_Amount<7499)
+                dis=400;
+            else if(Total_Bill_Amount>=7500 && Total_Bill_Amount<9999)
+                dis=700;
+            else if(Total_Bill_Amount>=10000 && Total_Bill_Amount<19999)
+                dis=1000;
+            else if(Total_Bill_Amount>=20000 && Total_Bill_Amount<29999)
+                dis=1500;
+            else
+                dis=2000;
+
+            System.out.println("Subscription fee/month: "+fee);
+            System.out.println("Discount: "+dis);
+        }
+        else{
+            super.calculateDiscount();
+        }
+    }
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String name=sc.next();
+        String city=sc.next();
+        int age=sc.nextInt();
+        String gen=sc.next();
+        int total= sc.nextInt();
+        int ch= sc.nextInt();
+        int fee;
+        if(ch==1)
+            fee= sc.nextInt();
+        else
+            fee=0;
+        Premium obj=new Premium(name,city,gen,age,total,fee);
+        obj.Display();
+        obj.calculateDiscount();
+    }
+}
+</textarea>
+    <br>
+    <button id="qb29">Copy</button>
+    <script>
+    let text29;
+    text29 = document.getElementById("q29");
+    document.getElementById("qb29").onclick=function(){
+    text29.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>3) Create 4 classes Person, Staff, TemporaryStaff and a Main class to test.  Here Person class will be inherited by Staff class and Staff class will be again inherited by the TemporaryStaff class.</p>
+  <textarea id="q30" class="que30" readonly>
+import java.util.*;
+class Person {
+    String name;
+    Person(String na){
+        this.name=na;
+    }
+    void dis(){
+        System.out.println("Name : "+name);
+    }
+}
+class Staff extends Person{
+    int staffid;
+    Staff(String na,int id){
+        super(na);
+        this.staffid=id;
+    }
+    void displ(){
+        System.out.println("Staff Id : "+staffid);
+    }
+}
+class TemporaryStaff extends Staff{
+    int days,hours,salary;
+    TemporaryStaff(String na,int id,int da,int hr){
+        super(na, id);
+        this.days=da;
+        this.hours=hr;
+    }
+    int calculate(){
+        salary=days*hours*50;
+        return 0;
+    }
+    int display(){
+        System.out.println("No. of Days : "+days);
+        System.out.println("No. of Hours Worked : "+hours);
+        System.out.println(("Total Salary : "+salary));
+        return 0;
+    }
+}
+class Mai{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String na=sc.next();
+        int id=sc.nextInt();
+        int da=sc.nextInt();
+        int hr=sc.nextInt();
+        TemporaryStaff obj=new TemporaryStaff(na,id,da,hr);
+        obj.dis();
+        obj.displ();
+        obj.calculate();
+        obj.display();
+    }
+}
+</textarea>
+    <br>
+    <button id="qb30">Copy</button>
+    <script>
+    let text30;
+    text30 = document.getElementById("q30");
+    document.getElementById("qb30").onclick=function(){
+    text30.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>4) Develop a program for banking system for account management. Each account has the following attributes: AccountID, HolderName and balance. Declare one constructor with three parameters that initializes the three attributes to some default values. Attributes must be validated.</p>
+  <textarea id="q31" class="que31" readonly>
+//Develop a program for banking system for account management
+import java.util.*;
+
+class Account {
+     public int AccountId;
+     public String HolderName;
+     public int balance;
+
+     Account() {
+          this.AccountId = 0;
+          this.HolderName = null;
+          this.balance = 0;
+     }
+
+     Account(int id, String name, int bal) {
+          if (id >= 100 && id <= 999) {
+               this.AccountId = id;
+          } else {
+               this.AccountId = -1;
+          }
+          this.HolderName = name;
+          if (bal >= 0) {
+               this.balance = bal;
+          } else {
+               this.balance = 0;
+          }
+     }
+
+     public void setAccountBalance(int s) {
+          System.out.println(this.balance);
+     }
+
+     public int credit(int amount) {
+          this.balance += amount;
+          return this.balance;
+     }
+}
+
+class VIPAccount extends Account {
+     VIPAccount() {
+          super();
+     }
+
+     VIPAccount(int id, String name, int bal) {
+          super(id, name, bal);
+     }
+
+     public void setAccountBalance(int s) {
+          super.setAccountBalance(s);
+          if (s < -10000) {
+               System.out.println("The balance can be negative but no less than -10000");
+          } else {
+               System.out.println(s);
+          }
+     }
+}
+
+class Main {
+     public static void main(String[] args) {
+          Scanner scan = new Scanner(System.in);
+          VIPAccount va = new VIPAccount();
+          va.AccountId = Integer.parseInt(scan.nextLine());
+          va.HolderName = scan.nextLine();
+          va.balance = Integer.parseInt(scan.nextLine());
+          VIPAccount va1 = new VIPAccount(va.AccountId, va.HolderName, va.balance);
+          System.out.println(va1.AccountId + " " + va1.HolderName + " " + va1.balance);
+          int amount = Integer.parseInt(scan.nextLine());
+          System.out.println(va1.credit(amount));
+          int sal = Integer.parseInt(scan.nextLine());
+          va1.setAccountBalance(sal);
+
+          scan.close();
+     }
+}
+</textarea>
+    <br>
+    <button id="qb31">Copy</button>
+    <script>
+    let text31;
+    text31 = document.getElementById("q31");
+    document.getElementById("qb31").onclick=function(){
+    text31.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <h1 id="ih2" class="ih2">Inheritance 2</h1><br>
+    <h2>Practise 2</h2>
+    <p>1) Considering the Banking Scenario, You have different types of accounts like Current Account, Savings Account which inherits the base class Account.</p>
+  <textarea id="q32" class="que32" readonly>
+
+//Considering the Banking Scenario
+import java.text.*;
+import java.util.*;
+
+abstract class Account {
+     private String name;
+     private int number;
+     private int balance;
+     private Date startDate;
+
+     public Account(String name, int number, int balance, Date startDate) {
+          this.name = name;
+          this.number = number;
+          this.balance = balance;
+          this.startDate = startDate;
+     }
+
+     public abstract double calculateInterest(Date dueDate);
+
+     public String getName() {
+          return name;
+     }
+
+     public int getNumber() {
+          return number;
+     }
+
+     public int getBalance() {
+          return balance;
+     }
+
+     public Date getStartDate() {
+          return startDate;
+     }
+}
+
+class SavingsAccount extends Account {
+     private final static double INTEREST_RATE = 0.12;
+
+     public SavingsAccount(String name, int number, int balance, Date startDate) {
+          super(name, number, balance, startDate);
+     }
+
+     @Override
+     public double calculateInterest(Date dueDate) {
+          long timeDiff = dueDate.getTime() - getStartDate().getTime();
+          double interest = getBalance() * INTEREST_RATE * (timeDiff / (1000.0 * 60 * 60 * 24 * 365));
+          return interest;
+     }
+}
+
+class CurrentAccount extends Account {
+     private final static double INTEREST_RATE = 0.05;
+
+     public CurrentAccount(String name, int number, int balance, Date startDate) {
+          super(name, number, balance, startDate);
+     }
+
+     @Override
+     public double calculateInterest(Date dueDate) {
+          long timeDiff = dueDate.getTime() - getStartDate().getTime();
+          double interest = getBalance() * INTEREST_RATE * (timeDiff / (1000.0 * 60 * 60 * 24 * 365));
+          return interest;
+     }
+}
+
+class Main{
+     public static void main(String[] args) {
+          Scanner scan = new Scanner(System.in);
+          int accountType = scan.nextInt();
+          scan.nextLine();
+          String name = scan.nextLine();
+          int number = scan.nextInt();
+          int balance = scan.nextInt();
+          scan.nextLine();
+          String startDateStr = scan.nextLine();
+          String endDateStr = scan.nextLine();
+
+          SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+          Date startDate = null;
+          Date endDate = null;
+          try {
+               startDate = dateFormat.parse(startDateStr);
+               endDate = dateFormat.parse(endDateStr);
+          } catch (ParseException e) {
+               e.printStackTrace();
+          }
+
+          Account account;
+          if (accountType == 2) {
+               account = new CurrentAccount(name, number, balance, startDate);
+          } else {
+               account = new SavingsAccount(name, number, balance, startDate);
+          }
+
+          double interest = account.calculateInterest(endDate);
+          System.out.println(interest);
+
+          scan.close();
+     }
+}
+</textarea>
+    <br>
+    <button id="qb32">Copy</button>
+    <script>
+    let text32;
+    text32 = document.getElementById("q32");
+    document.getElementById("qb32").onclick=function(){
+    text32.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>2) Bank Account</p>
+  <textarea id="q33" class="que33" readonly>
+//Bank Account
+import java.util.*;
+
+class Account {
+     protected String accName;
+     protected String accNo;
+     protected String bankName;
+
+     public String getAccName() {
+          return accName;
+     }
+
+     public void setAccName(String accName) {
+          this.accName = accName;
+     }
+
+     public String getAccNo() {
+          return accNo;
+     }
+
+     public void setAccNo(String accNo) {
+          this.accNo = accNo;
+     }
+
+     public String getBankName() {
+          return bankName;
+     }
+
+     public void setBankName(String bankName) {
+          this.bankName = bankName;
+     }
+
+     protected void display() {
+          System.out.println(accName);
+          System.out.println(accNo);
+          System.out.println(bankName);
+     }
+}
+
+class CurrentAccount extends Account {
+     private String tinNumber;
+
+     public CurrentAccount() {
+     }
+
+     public CurrentAccount(String accName, String accNo, String bankName, String tinNumber) {
+          this.accName = accName;
+          this.accNo = accNo;
+          this.bankName = bankName;
+          this.tinNumber = tinNumber;
+     }
+
+     public String getTinNumber() {
+          return tinNumber;
+     }
+
+     public void setTinNumber(String tinNumber) {
+          this.tinNumber = tinNumber;
+     }
+
+     public void display() {
+          super.display();
+          System.out.println(tinNumber);
+     }
+}
+
+class SavingsAccount extends Account {
+     private String orgName;
+
+     public SavingsAccount() {
+     }
+
+     public SavingsAccount(String accName, String accNo, String bankName, String orgName) {
+          this.accName = accName;
+          this.accNo = accNo;
+          this.bankName = bankName;
+          this.orgName = orgName;
+     }
+
+     public String getOrgName() {
+          return orgName;
+     }
+
+     public void setOrgName(String orgName) {
+          this.orgName = orgName;
+     }
+
+     public void display() {
+          super.display();
+          System.out.println(orgName);
+     }
+}
+
+class Main{
+     public static void main(String[] args) {
+          Scanner scan = new Scanner(System.in);
+          int choice = scan.nextInt();
+          scan.nextLine();
+          String accName = scan.next();
+          String accNo = scan.next();
+          String bankName = scan.next();
+          if (choice == 1) {
+               String orgName = scan.next();
+               SavingsAccount sa = new SavingsAccount(accName, accNo, bankName, orgName);
+               sa.display();
+          } else if (choice == 2) {
+               String tinNumber = scan.next();
+               CurrentAccount ca = new CurrentAccount(accName, accNo, bankName, tinNumber);
+               ca.display();
+          }
+
+          scan.close();
+     }
+}
+</textarea>
+    <br>
+    <button id="qb33">Copy</button>
+    <script>
+    let text33;
+    text33 = document.getElementById("q33");
+    document.getElementById("qb33").onclick=function(){
+    text33.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>3) WorkerDetail</p>
+  <textarea id="q34" class="que34" readonly>
+//Create multilevel inheritance with the below classes
+import java.util.*;
+
+class WorkerDetail {
+     int empCode;
+     int basicSalary;
+     String name;
+
+     public WorkerDetail(int empCode, String name, int basicSalary) {
+          this.empCode = empCode;
+          this.name = name;
+          this.basicSalary = basicSalary;
+     }
+
+     public void displayDetails() {
+          System.out.println("Code :" + empCode);
+          System.out.println("Name : " + name);
+          System.out.println("Salary " + basicSalary);
+     }
+
+     public double calculateHRA() {
+          return 0.6 * basicSalary;
+     }
+}
+
+class OfficerSal extends WorkerDetail {
+     public OfficerSal(int empCode, String name, int basicSalary) {
+          super(empCode, name, basicSalary);
+     }
+
+     public double calculateDA() {
+          return 0.98 * basicSalary;
+     }
+}
+
+class ManagerSal extends OfficerSal {
+     public ManagerSal(int empCode, String name, int basicSalary) {
+          super(empCode, name, basicSalary);
+     }
+
+     public double calculateCA() {
+          return 0.2 * basicSalary;
+     }
+
+     public double calculateGrossPay() {
+          return basicSalary + calculateHRA() + calculateDA() + calculateCA();
+     }
+}
+
+class Main{
+     public static void main(String[] args) {
+          Scanner scan = new Scanner(System.in);
+          int empCode = scan.nextInt();
+          String name = scan.next();
+          int basicSalary = scan.nextInt();
+
+          ManagerSal manager = new ManagerSal(empCode, name, basicSalary);
+          manager.displayDetails();
+          System.out.println("HRA :" + manager.calculateHRA());
+          System.out.println("DA :" + manager.calculateDA());
+          System.out.println("City Allowance :" + manager.calculateCA());
+          System.out.println("Gross Salary :" + manager.calculateGrossPay());
+
+          scan.close();
+     }
+}
+</textarea>
+    <br>
+    <button id="qb34">Copy</button>
+    <script>
+    let text34;
+    text34 = document.getElementById("q34");
+    document.getElementById("qb34").onclick=function(){
+    text34.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <h2>Practise Exercises</h2>
+    <p>1) A company maintains a database that has the details of all the employees. There are two levels of employees where level 1 is the top management having a salary of more than 100 dollars and level 2 is the staff who are getting a salary of fewer than 100 dollars. Create a class named Employee with empId and salary as attributes. Create another class empLevel that extends employee and categorizes the employee into various levels.</p>
+  <textarea id="q35" class="que35" readonly>
+import java.util.*;
+import java.util.Scanner;
+class Employee{
+    protected int empId;
+    protected float sal;
+}
+
+class empLevel extends Employee{
+    void top_management(){
+        System.out.print(empId+"\n"+sal+"\n1");
+    }
+
+    void staff(){
+        System.out.print(empId+"\n"+sal+"\n2");
+    }
+}
+
+class Company_database{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        empLevel obj = new empLevel();
+        obj.empId = sc.nextInt();
+        obj.sal = sc.nextFloat();
+        if(obj.sal > 100){
+            obj.top_management();
+        }else{
+            obj.staff();
+        }
+    }
+}
+</textarea>
+    <br>
+    <button id="qb35">Copy</button>
+    <script>
+    let text35;
+    text35 = document.getElementById("q35");
+    document.getElementById("qb35").onclick=function(){
+    text35.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>2) Create 5 classes as shown in the below diagram and create data members and methods as mentioned below.</p>
+  <textarea id="q36" class="que36" readonly>
+//Create 5 classes as shown in the below diagram
+import java.util.*;
+
+class Person {
+     private String name;
+     private int birthYear;
+
+     public Person(String n, int byear) {
+          name = n;
+          birthYear = byear;
+     }
+
+     public String toString() {
+          return "Name : " + name + "\nBirthYear : " + birthYear + "";
+     }
+}
+
+class Staff extends Person {
+     protected double salary;
+
+     public Staff(String n, int byear, double s) {
+          super(n, byear);
+          salary = s;
+     }
+
+     public String toString() {
+          return super.toString() + "\nOld Salary : " + salary;
+     }
+}
+
+class Student extends Person {
+     private String major;
+     private double att;
+
+     public Student(String n, int byear, String m, double at) {
+          super(n, byear);
+          major = m;
+          att = at;
+     }
+
+     public String atten(double att) {
+          return (att >= 75) ? "Yes" : "No";
+     }
+
+     public String toString() {
+          return super.toString() + "\nDepartment : " + major + "\nEligible : " + atten(att);
+     }
+}
+
+class TeachingStaff extends Staff {
+     private String subject;
+     private double result;
+
+     public TeachingStaff(String n, int byear, double s, String sub, double res) {
+          super(n, byear, s);
+          subject = sub;
+          result = res;
+     }
+
+     double salCalc() {
+          return salary + (salary * (result / 1000));
+     }
+
+     public String toString() {
+          return super.toString() + "\nSubject : " + subject + "\nNew Salary : " + salCalc();
+     }
+}
+
+class NonTeachingStaff extends Staff {
+     private String lab;
+     private double exp;
+
+     public NonTeachingStaff(String n, int byear, double s, String l, double expr) {
+          super(n, byear, s);
+          lab = l;
+          exp = expr;
+     }
+
+     double ntsalCalc() {
+          return salary + (salary * (exp / 100));
+     }
+
+     public String toString() {
+          return super.toString() + "\nLab : " + lab + "\nNew Salary : " + ntsalCalc();
+     }
+}
+
+class PersonTester {
+     public static void main(String[] args) {
+          Scanner scan = new Scanner(System.in);
+          int choice = Integer.parseInt(scan.nextLine());
+          String name = scan.nextLine();
+          int byear = Integer.parseInt(scan.nextLine());
+          if (choice == 1) {
+               String dept = scan.nextLine();
+               double att = scan.nextDouble();
+               Student b = new Student(name, byear, dept, att);
+               System.out.println(b);
+          } else if (choice == 2) {
+               String sub = scan.nextLine();
+               double result = scan.nextDouble();
+               double sal = scan.nextDouble();
+               TeachingStaff ts = new TeachingStaff(name, byear, sal, sub, result);
+               System.out.println(ts);
+          } else if (choice == 3) {
+               String lab = scan.nextLine();
+               double exp = scan.nextDouble();
+               double sal = scan.nextDouble();
+               NonTeachingStaff nts = new NonTeachingStaff(name, byear, sal, lab, exp);
+               System.out.println(nts);
+          }
+
+          scan.close();
+
+     }
+}</textarea>
+    <br>
+    <button id="qb36">Copy</button>
+    <script>
+    let text36;
+    text36 = document.getElementById("q36");
+    document.getElementById("qb36").onclick=function(){
+    text36.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>3) Reward calculation</p>
+  <textarea id="q37" class="que37" readonly>
+//Reward calculation
+import java.util.*;
+import java.text.DecimalFormat;
+
+class VISACard {
+     private String holderName;
+     private String ccv;
+
+     public Double computeRewardPoints(String purchaseType, Double amount) {
+          double dis = 0.01 * amount;
+          return dis;
+     }
+
+     public String getHolderName() {
+          return holderName;
+     }
+
+     public void setHolderName(String holderName) {
+          this.holderName = holderName;
+     }
+
+     public String getCcv() {
+          return ccv;
+     }
+
+     public void setCcv(String ccv) {
+          this.ccv = ccv;
+     }
+}
+
+class HPVISACard extends VISACard {
+     public Double computeRewardPoints(String purchaseType, Double amount) {
+          double dis = super.computeRewardPoints(purchaseType, amount);
+          if (purchaseType.compareTo("fuel") == 0) {
+               return dis + 10;
+          } else {
+               return dis;
+          }
+     }
+}
+
+class Main {
+     public static void main(String[] args) {
+          VISACard v = new VISACard();
+          HPVISACard h = new HPVISACard();
+          DecimalFormat d = new DecimalFormat("0.0");
+          Scanner scan = new Scanner(System.in);
+          v.setHolderName(scan.nextLine());
+          v.setCcv(scan.nextLine());
+          Double amount = Double.parseDouble(scan.nextLine());
+          String type = scan.nextLine();
+          int n = Integer.parseInt(scan.nextLine());
+          if (n == 1) {
+               double res = v.computeRewardPoints(type, amount);
+               System.out.println(d.format(res));
+          }
+          if (n == 2) {
+               double res = h.computeRewardPoints(type, amount);
+               System.out.println(d.format(res));
+          }
+          if (n > 2) {
+               System.out.println("Invalid Choice");
+          }
+
+          scan.close();
+     }
+}</textarea>
+    <br>
+    <button id="qb37">Copy</button>
+    <script>
+    let text37;
+    text37 = document.getElementById("q37");
+    document.getElementById("qb37").onclick=function(){
+    text37.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>4) Area of shape</p>
+  <textarea id="q38" class="que38" readonly>
+//Area of shape
+import java.text.DecimalFormat;
+import java.util.*;
+
+class Shape {
+     protected double area;
+
+     public void computeArea() {
+          area = 0;
+     }
+
+     public double getArea() {
+          return area;
+     }
+
+     public void setArea(double area) {
+          this.area = area;
+     }
+}
+
+class Circle extends Shape {
+     private double radius;
+
+     public double getRadius() {
+          return radius;
+     }
+
+     public void setRadius(double radius) {
+          this.radius = radius;
+     }
+
+     public void computeArea() {
+          DecimalFormat d = new DecimalFormat("0.00");
+          this.area = 3.14 * (radius * radius);
+          System.out.println(d.format(this.area));
+     }
+}
+
+class Rectangle extends Shape {
+     private double length;
+     private double breadth;
+
+     public double getLength() {
+          return length;
+     }
+
+     public void setLength(double length) {
+          this.length = length;
+     }
+
+     public double getBreadth() {
+          return breadth;
+     }
+
+     public void setBreadth(double breadth) {
+          this.breadth = breadth;
+     }
+
+     public void computeArea() {
+          DecimalFormat d = new DecimalFormat("0.00");
+          this.area = length * breadth;
+          System.out.println(d.format(this.area));
+     }
+}
+
+class Triangle extends Shape {
+     private double base;
+     private double height;
+
+     public double getBase() {
+          return base;
+     }
+
+     public void setBase(double base) {
+          this.base = base;
+     }
+
+     public double getHeight() {
+          return height;
+     }
+
+     public void setHeight(double height) {
+          this.height = height;
+     }
+
+     public void computeArea() {
+          DecimalFormat d = new DecimalFormat("0.00");
+          this.area = 0.5 * base * height;
+          System.out.println(d.format(this.area));
+     }
+}
+
+class Main {
+     public static void main(String[] args) {
+          int n;
+          Scanner scan = new Scanner(System.in);
+          n = scan.nextInt();
+          Circle c = new Circle();
+          Rectangle r = new Rectangle();
+          Triangle t = new Triangle();
+          if (n == 1) {
+               c.setRadius(scan.nextDouble());
+               c.computeArea();
+          }
+          if (n == 2) {
+               r.setLength(scan.nextDouble());
+               r.setBreadth(scan.nextDouble());
+               r.computeArea();
+          }
+          if (n == 3) {
+               t.setBase(scan.nextDouble());
+               t.setHeight(scan.nextDouble());
+               t.computeArea();
+          }
+          if (n > 3) {
+               System.out.println("Invalid Input");
+          }
+
+          scan.close();
+     }
+}</textarea>
+    <br>
+    <button id="qb38">Copy</button>
+    <script>
+    let text38;
+    text38 = document.getElementById("q38");
+    document.getElementById("qb38").onclick=function(){
+    text38.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>5) Multilevel inheritance</p>
+  <textarea id="q39" class="que39" readonly>
+//Create a class SilverStall with the following protected attributes
+import java.util.*;
+
+class SilverStall {
+     protected String name;
+     protected String detail;
+     protected String owner;
+     protected int cost;
+
+     public SilverStall(String name, String detail, String owner, int cost) {
+          this.name = name;
+          this.detail = detail;
+          this.owner = owner;
+          this.cost = cost;
+     }
+
+     public SilverStall() {
+          this.name = null;
+          this.detail = null;
+          this.owner = null;
+          this.cost = 0;
+     }
+
+     public String getName() {
+          return name;
+     }
+
+     public void setName(String name) {
+          this.name = name;
+     }
+
+     public String getDetail() {
+          return detail;
+     }
+
+     public void setDetail(String detail) {
+          this.detail = detail;
+     }
+
+     public String getOwner() {
+          return owner;
+     }
+
+     public void setOwner(String owner) {
+          this.owner = owner;
+     }
+
+     public int getCost() {
+          return cost;
+     }
+
+     public void setCost(int cost) {
+          this.cost = cost;
+     }
+}
+
+class GoldStall extends SilverStall {
+     private int tvSet;
+
+     public GoldStall(String name, String detail, String owner, int cost, int tvSet) {
+          this.name = name;
+          this.detail = detail;
+          this.owner = owner;
+          this.cost = cost;
+          this.tvSet = tvSet;
+     }
+
+     public GoldStall() {
+          this.name = null;
+          this.detail = null;
+          this.owner = null;
+          this.cost = 0;
+          this.tvSet = 0;
+     }
+
+     public int getTvSet() {
+          return tvSet;
+     }
+
+     public void setTvSet(int tvSet) {
+          this.tvSet = tvSet;
+     }
+}
+
+class PlatinumStall extends GoldStall {
+     private int projector;
+
+     public PlatinumStall(String name, String detail, String owner, int cost,
+               int tvSet, int projector) {
+          this.name = name;
+          this.detail = detail;
+          this.owner = owner;
+          this.cost = cost;
+          this.setTvSet(tvSet);
+          this.projector = projector;
+     }
+
+     public PlatinumStall() {
+          this.name = null;
+          this.detail = null;
+          this.owner = null;
+          this.cost = 0;
+          this.setTvSet(0);
+          this.projector = 0;
+     }
+
+     public int getProjector() {
+          return projector;
+     }
+
+     public void setProjector(int projector) {
+          this.projector = projector;
+     }
+}
+
+class Main {
+     public static void main(String[] args) {
+          int n;
+          Scanner scan = new Scanner(System.in);
+          n = Integer.parseInt(scan.nextLine());
+          SilverStall s = new SilverStall();
+          GoldStall g = new GoldStall();
+          PlatinumStall p = new PlatinumStall();
+          if (n == 1) {
+               s.setName(scan.nextLine());
+               s.setDetail(scan.nextLine());
+               s.setOwner(scan.nextLine());
+               s.setCost(Integer.parseInt(scan.nextLine()));
+               SilverStall s1 = new SilverStall(s.name, s.detail, s.owner, s.cost);
+               System.out.println(s.cost);
+          }
+          if (n == 2) {
+               g.setName(scan.nextLine());
+               g.setDetail(scan.nextLine());
+               g.setOwner(scan.nextLine());
+               g.setCost(Integer.parseInt(scan.nextLine()));
+               g.setTvSet(Integer.parseInt(scan.nextLine()));
+               GoldStall g1 = new GoldStall(g.name, g.detail, g.owner, g.cost, g.getTvSet());
+               System.out.println(g.cost + (g.getTvSet() * 100));
+          }
+          if (n == 3) {
+               p.setName(scan.nextLine());
+               p.setDetail(scan.nextLine());
+               p.setOwner(scan.nextLine());
+               p.setCost(Integer.parseInt(scan.nextLine()));
+               p.setTvSet(Integer.parseInt(scan.nextLine()));
+               p.setProjector(Integer.parseInt(scan.nextLine()));
+               PlatinumStall p1 = new PlatinumStall(p.name, p.detail, p.owner, p.cost, p.getTvSet(), p.getProjector());
+               System.out.println(p.cost + (p.getTvSet() * 100) + (p.getProjector() * 500));
+          }
+          if (n > 3) {
+               System.out.println("Invalid Input");
+          }
+
+          scan.close();
+     }
+}</textarea>
+    <br>
+    <button id="qb39">Copy</button>
+    <script>
+    let text39;
+    text39 = document.getElementById("q39");
+    document.getElementById("qb39").onclick=function(){
+    text39.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <h1 id="p" class="p">Polymorphism</h1><br>
+    <h2>Concept Builder</h2>
+    <p>1) Can we achieve method overloading by changing the return type?</p>
+    <p>Ans) No</p>
+    <p>2) Which of the followwing are not true about method overloading in polymorphism?</p>
+    <p>Ans) Same method signature which is of type static and same number of parameters but of different type</p>
+    <p>3) If 2 classes derive one base class and redefine a function of base class, also overload some operators inside class body. Among these two things of function and operator overloading, where is polymorphism used?</p>
+    <p>Ans) Either function overloading or operator overloading because polymorphism can be applied only once in a program</p>
+    <p>4) Which of the following is a type of polymorphism in Java programming?</p>
+    <p>Ans) Compile time polymorphism</p>
+    <p>5) How many types of polymorphism are there?</p>
+    <p>Ans) 2</p>
+    <p>6) CompileTime Polymorphism can be achieved through</p>
+    <p>Ans) Method Overloading</p>
+    <p>7) Output for the below snippet is</p>
+<textarea readonly style="width: 300px; height:120px;">class Main {
+class Parent {
+    void show() {
+        System.out.println("Parent");
+    }
+}   
+    
+class Child extends Parent {
+    void show() {
+        System.out.println("Child");
+    }
+
+    public static void main(String args[]) {
+        Parent p =new Child();
+        p.show();
+    }
+}
+</textarea>
+    <p>Ans) child</p>
+    <p>8) From the below snippet, is it possible to overload the main() method</p>
+<textarea readonly style="width: 300px; height:120px;">class Main {
+public class overldmain
+{
+    public static void main(String[] args)
+    {
+        System.out.println("main(String[] args)");
+    }
+ 
+    public static void main(String args1)
+    {
+        System.out.println("main(String arg1)");
+    }
+ 
+    public static void main(String arg1, String arg2)
+    {
+        System.out.println("main(String arg1, String arg2)");
+    }
+}
+</textarea>
+    <p>Ans) Yes</p>
+    <p>9) What will be the output of the following Java program?</p>
+<textarea readonly style="width: 300px; height:120px;">class Main {
+class overload 
+   {
+        int x;
+        double y;
+        void add(int a , int b) 
+        {
+            x = a + b;
+        }
+        void add(double c , double d)
+        {
+            y = c + d;
+        }
+        overload() 
+        {
+            this.x = 0;
+            this.y = 0;
+        }        
+    }    
+    class Overload_methods 
+    {
+        public static void main(String args[])
+        {
+            overload obj = new overload();   
+            int a = 2;
+            double b = 3.2;
+            obj.add(a, a);
+            obj.add(b, b);
+            System.out.println(obj.x + " " + obj.y);     
+        }
+   }
+</textarea>
+    <p>Ans) 4 6.4</p><br>
+    <h2>Lab exercises</h3>
+  <p>1) Write a program to implement function overloading.<br>
+Ram is given two or three inputs as an integer, if he has two integers then add the two numbers. If he has three inputs,then multiply the three numbers.</p>
+  <textarea id="q40" class="que40" readonly>
+import java.util.*;
+
+public class Main{
+    public int fun1(int a,int b,int c)
+    {
+        return a*b*c;
+    }
+    
+    public int fun1(int a,int b)
+    {
+        return a+b;
+    }
+    
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        if(n>3){
+            System.out.println("WRONG INPUT");
+        }
+        else{
+            if(n==2){
+                int a = sc.nextInt();
+                int b = sc.nextInt();
+                Main m = new Main();
+                System.out.println(m.fun1(a, b));
+            }
+            else{
+                int a = sc.nextInt();
+                int b = sc.nextInt();
+                int c = sc.nextInt();
+                Main m = new Main();
+                System.out.println(m.fun1(a, b, c));
+            }
+        }
+    }
+}</textarea>
+    <br>
+    <button id="qb40">Copy</button>
+    <script>
+    let text40;
+    text40 = document.getElementById("q40");
+    document.getElementById("qb40").onclick=function(){
+    text40.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>2) METHOD OVERLOADING<br>Create a class named 'Hello'. Define a method 'sayHello'</p>
+  <textarea id="q41" class="que41" readonly>
+import java.util.*;
+
+class Hello{
+    public void sayHello()
+    {
+        System.out.println("Hello");
+    }
+    
+    public void sayHello(String s)
+    {
+        System.out.println("Hello "+s);
+    }
+}
+
+public class Main{
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        Hello h = new Hello();
+        String s = sc.nextLine();
+        h.sayHello();
+        h.sayHello(s);
+    }
+}
+</textarea>
+    <br>
+    <button id="qb41">Copy</button>
+    <script>
+    let text41;
+    text41 = document.getElementById("q41");
+    document.getElementById("qb41").onclick=function(){
+    text41.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>3) Write a Java program to implement constructor overloading.<br>Create a student class with properties like name, dept, and college.</p>
+  <textarea id="q42" class="que42" readonly>
+import java.util.*;
+
+class Student{
+    String name,dept,college;
+    Student(String n, String d, String c)
+    {
+        name = n;
+        dept = d;
+        college = c;
+    }
+    
+    Student(String n, String d)
+    {
+        name = n;
+        dept = d;
+        college = "null"; 
+    }
+    
+    public void display()
+    {
+        System.out.println("Name:"+name+"\nDept:"+dept+"\nCollege:"+college);
+    }
+}
+
+public class Main{
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        int ch = Integer.parseInt(sc.nextLine());
+        if(ch==2){
+            String n = sc.nextLine();
+            String d = sc.nextLine();
+            Student s = new Student(n, d);
+            s.display();
+        }
+        else{
+            String n = sc.nextLine();
+            String d = sc.nextLine();
+            String c = sc.nextLine();
+            Student s = new Student(n, d, c);
+            s.display();
+        }
+    }
+}
+</textarea>
+    <br>
+    <button id="qb42">Copy</button>
+    <script>
+    let text42;
+    text42 = document.getElementById("q42");
+    document.getElementById("qb42").onclick=function(){
+    text42.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <h2>Practical Exercises</h3>
+    <p>1) Write a Multiply function for two integers and use overload the function by changing the parameter for the double data type</p>
+    <textarea id="q43" class="que43" readonly>
+import java.util.*;
+
+class Main {
+     int Multiply(int a, int b) {
+          return a * b;
+     }
+
+     double Multiply(double a, double b) {
+          return a * b;
+     }
+
+     public static void main(String[] args) {
+          Scanner scan = new Scanner(System.in);
+          int a = scan.nextInt();
+          int b = scan.nextInt();
+          double c = scan.nextDouble();
+          double d = scan.nextDouble();
+          Main m = new Main();
+          System.out.println(m.Multiply(a, b));
+          System.out.println(m.Multiply(c, d));
+
+          scan.close();
+     }
+}
+</textarea>
+    <br>
+    <button id="qb43">Copy</button>
+    <script>
+    let text43;
+    text43 = document.getElementById("q43");
+    document.getElementById("qb43").onclick=function(){
+    text43.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script><br>
+    <p>2)  Overloading the main function</p>
+    <textarea id="q44" class="que44" readonly>
+class Main {
+     public static void main(String s) {
+          System.out.println("Overloaded: " + s);
+     }
+
+     public static void main(String s1, String s2) {
+          System.out.println("Overloaded: " + s1 + " & " + s2);
+     }
+
+     public static void main(String args[]) {
+          System.out.println("Hi");
+          Main.main("Hello World");
+          Main.main("Tom", "Jerry");
+     }
+}</textarea>
+    <br>
+    <button id="qb44">Copy</button>
+    <script>
+    let text44;
+    text44 = document.getElementById("q44");
+    document.getElementById("qb44").onclick=function(){
+    text44.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>3) Write two subclasses named Dog and Cat</p>
+    <textarea id="q45" class="que45" readonly>
+//Write two subclasses named Dog and Cat
+class Animal {
+
+     void Print() {
+          System.out.println("Animal");
+     }
+}
+
+class Dog extends Animal {
+
+     void Print() {
+          System.out.println("Dog");
+     }
+}
+
+class Cat extends Animal {
+
+     void Print() {
+          System.out.println("Cat");
+     }
+}
+
+class Main {
+     public static void main(String[] args) {
+
+          Animal a;
+
+          a = new Dog();
+          a.Print();
+
+          a = new Cat();
+          a.Print();
+     }
+}</textarea>
+    <br>
+    <button id="qb45">Copy</button>
+    <script>
+    let text45;
+    text45 = document.getElementById("q45");
+    document.getElementById("qb45").onclick=function(){
+    text45.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>4) Function Overloading - An ice cream vendor</p>
+    <textarea id="q46" class="que46" readonly>
+//Function Overloading - An ice cream vendor
+import java.util.*;
+import java.text.*;
+
+class Icecream {
+     public double qty, qty_rd, pi = 3.14;
+     DecimalFormat d = new DecimalFormat("0.00");
+
+     public void Quantity(int r) {
+          qty = 1.33 * pi * r * r * r;
+          qty_rd = Math.round(qty * 100.0) / 100.0;
+          System.out.println(d.format(qty_rd));
+     }
+
+     public void Quantity(int r, int h) {
+          qty = 0.33 * pi * r * r * h;
+          qty_rd = Math.round(qty * 100.0) / 100.0;
+          System.out.println(d.format(qty_rd));
+     }
+}
+
+class IcecreamMain {
+     public static void main(String args[]) {
+          int r, h;
+          Icecream ic = new Icecream();
+          Scanner scan = new Scanner(System.in);
+          r = scan.nextInt();
+          if (scan.hasNextInt()) {
+               h = scan.nextInt();
+               ic.Quantity(r, h);
+          } else
+               ic.Quantity(r);
+
+          scan.close();
+     }
+}</textarea>
+    <br>
+    <button id="qb46">Copy</button>
+    <script>
+    let text46;
+    text46 = document.getElementById("q46");
+    document.getElementById("qb46").onclick=function(){
+    text46.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>5) Write a Multiply function for two integers and use overload the function by using changing the number of parameters for three integers.</p>
+    <textarea id="q47" class="que47" readonly>
+//Write a Multiply function for two integers and use overload the function by using changing the number of parameters for three integers
+import java.util.*;
+
+class Main {
+     int Multiply(int a, int b) {
+          return a * b;
+     }
+
+     int Multiply(int a, int b, int c) {
+          return a * b * c;
+     }
+
+     public static void main(String[] args) {
+          Scanner scan = new Scanner(System.in);
+          int a = scan.nextInt();
+          int b = scan.nextInt();
+          int c = scan.nextInt();
+          int d = scan.nextInt();
+          int e = scan.nextInt();
+          Main m = new Main();
+          System.out.println(m.Multiply(a, b));
+          System.out.println(m.Multiply(c, d, e));
+
+          scan.close();
+     }
+}
+</textarea>
+    <br>
+    <button id="qb47">Copy</button>
+    <script>
+    let text47;
+    text47 = document.getElementById("q47");
+    document.getElementById("qb47").onclick=function(){
+    text47.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <h1 id="ex" class="ex">Exception</h1><br>
+    <h2>Concept Builder</h2>
+    <p>1) If a try statement has catch blocks for both Exception and IOException, then which of the following statements is correct?</p>
+    <p>Ans) The catch block for IOException must appear before the catch block for Exception.</p>
+    <p>2) Which of these statements is incorrect?</p>
+    <p>Ans) try need not to be followed by anything</p>
+    <p>3) Which of the following exception is thrown when a programmer converts a string to a numeric type but the string doesn't have an appropriate format ?</p>
+    <p>Ans) NumberFormatException</p>
+    <p>4) State whether the following statements are True or False.i) A catch can have comma-separated multiple arguments.ii) Throwing an Exception always causes program termination.</p>
+    <p>Ans) False, False</p>
+    <p>5) Which of the following statements is correct?</p>
+<textarea readonly style="width: 530px; height:120px;">
+import java.util.Scanner;
+
+class AutoCloseableTest {    
+    public static void main(String []args) {      
+        try (Scanner consoleScanner = new Scanner(System.in)) {        
+            consoleScanner.close(); // CLOSE       
+            consoleScanner.close();    
+        }
+    }
+}
+</textarea>
+    <p>Ans) This program terminates normally without throwing any exceptions</p>
+    <p>6) What will be the output for the following code snippet?</p>
+<textarea readonly style="width: 350px; height:120px;">
+static int computeDivision(int a, int b) 
+{
+    int res =0;
+    try
+    {
+        res = a/b;
+    }
+    catch(NumberFormatException ex)
+    {
+        System.out.println("NumberFormatException");
+    }
+    return res;
+}
+public static void main(String args[])
+{
+    int a = 1,b = 0;
+    try
+    {
+        int i = computeDivision(a,b);
+        System.out.println(i);
+    }
+    catch(ArithmeticException e)
+    {
+        System.out.println(e.getMessage());
+    }
+}
+
+</textarea>
+    <p>Ans) / by zero</p>
+    <p>7) Given that FileNotFoundException is a subclass of IOException, what is the output of the following application?</p>
+<textarea readonly style="width: 400px; height:120px;">
+package office;
+import java.io.*;
+public class Printer 
+{
+    public void print() 
+    {
+        try 
+        {
+            throw new FileNotFoundException();
+        } 
+        catch (IOException exception) 
+        {
+            System.out.print("Z");
+        } 
+        catch (FileNotFoundException enfe) 
+        {
+        System.out.print("X");
+        } 
+        finally 
+        {
+        System.out.print("Y");
+        }
+    }
+    public static void main(String... ink) 
+    {
+        new Printer().print();
+    }
+}
+</textarea>
+    <p>Ans) ZY</p>
+    <h2>Practice 2</h3>
+        <p>1) Write a program to obtain two numbers and print their quotient</p>
+  <textarea id="q48" class="que48" readonly>
+//Write a program to obtain two numbers and print their quotient
+import java.util.*;
+
+class Q01Simple_List {
+     public static void main(String[] args) throws java.lang.Exception {
+          Scanner scan = new Scanner(System.in);
+          // Enter dividend
+          try {
+               int dividend = scan.nextInt();
+               // Enter divisor
+               int divisor = scan.nextInt();
+
+               try {
+                    System.out.println(dividend / divisor);
+               } catch (ArithmeticException e) {
+                    System.out.println(e);
+               }
+          } catch (Exception e) {
+               System.out.println(e);
+          }
+
+          scan.close();
+     }
+}
+</textarea>
+    <br>
+    <button id="qb48">Copy</button>
+    <script>
+    let text48;
+    text48 = document.getElementById("q48");
+    document.getElementById("qb48").onclick=function(){
+    text48.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>2) NullPointerException</p>
+  <textarea id="q49" class="que49" readonly>
+//NullPointerException
+import java.util.*;
+
+class Main {
+     public static void main(String[] args) {
+          Scanner scan = new Scanner(System.in);
+          try {
+               String str = null;
+               int index = Integer.parseInt(scan.nextLine());
+               System.out.println(str);
+               System.out.println(str.charAt(index));
+          } catch (NullPointerException n) {
+               System.out.println(n);
+          }
+
+          scan.close();
+     }
+}
+</textarea>
+    <br>
+    <button id="qb49">Copy</button>
+    <script>
+    let text49;
+    text49 = document.getElementById("q49");
+    document.getElementById("qb49").onclick=function(){
+    text49.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>3) User defined Exception</p>
+  <textarea id="q50" class="que50" readonly>
+//User defined Exception
+import java.util.*;
+
+class Bank {
+     private int accno;
+     private String name;
+     private double bal;
+
+     public Bank() {
+          this.accno = 0;
+          this.name = null;
+          this.bal = (double) 0;
+     }
+
+     public Bank(int accno, String name, double bal) {
+          this.accno = accno;
+          this.name = name;
+          this.bal = bal;
+     }
+
+     public int getAccno() {
+          return accno;
+     }
+
+     public void setAccno(int accno) {
+          this.accno = accno;
+     }
+
+     public String getName() {
+          return name;
+     }
+
+     public void setName(String name) {
+          this.name = name;
+     }
+
+     public double getBal() {
+          return bal;
+     }
+
+     public void setBal(double bal) {
+          this.bal = bal;
+     }
+
+     public String toString() {
+          return accno + " " + name + " " + bal;
+     }
+}
+
+class BankBO {
+     public void validate(Bank b) throws InvalidBalanceException {
+          if (b.getBal() < 1000) {
+               throw new InvalidBalanceException("Balance is less than 1000");
+          }
+     }
+}
+
+class InvalidBalanceException extends Exception {
+     public InvalidBalanceException(String s) {
+          System.out.println(s);
+     }
+}
+
+class Main {
+     public static void main(String[] args) {
+          Scanner scan = new Scanner(System.in);
+          Bank b = new Bank();
+          b.setAccno(Integer.parseInt(scan.nextLine()));
+          b.setName(scan.nextLine());
+          b.setBal(Double.parseDouble(scan.nextLine()));
+          BankBO bbo = new BankBO();
+          try {
+               bbo.validate(b);
+               System.out.println(b);
+          } catch (Exception e) {
+               System.out.println(e);
+          }
+
+          scan.close();
+     }
+}
+</textarea>
+    <br>
+    <button id="qb50">Copy</button>
+    <script>
+    let text50;
+    text50 = document.getElementById("q50");
+    document.getElementById("qb50").onclick=function(){
+    text50.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>4) Write a program to read the Register Number and Mobile Number of a student</p>
+  <textarea id="q51" class="que51" readonly>
+//Write a program to read the Register Number and Mobile Number of a student
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+class Main {
+     static void validate(String r, String n) {
+          if (r.length() != 9) {
+               System.out.println("Invalid");
+               throw new IllegalArgumentException("Register Number does not contain exactly 9 characters");
+          }
+          if (n.length() != 10) {
+               System.out.println("Invalid");
+               throw new IllegalArgumentException("Mobile Number does not contain exactly 10 characters");
+          }
+          // String pattern = "^[6|7|8|9]{1}\\d{9}";
+          String pattern = "^[1-9]([0-9]){9,9}$";
+          Pattern a = Pattern.compile(pattern);
+          Matcher m1 = a.matcher(n);
+          if (!m1.find()) {
+               System.out.println("Invalid");
+               throw new NumberFormatException("Mobile Number cannot contain any character other than a digit");
+          }
+          String pattern2 = "^[1-9][0-9]([A-Z]){3,3}([0-9]){4,4}$";
+          Pattern b = Pattern.compile(pattern2);
+          Matcher m2 = b.matcher(r);
+          if (!m2.find()) {
+               System.out.println("Invalid");
+               throw new NoSuchElementException(
+                         "Registration Number cannot contain any character other than digits and alphabets in format specified");
+          }
+     }
+
+     public static void main(String args[]) {
+          Scanner sc = new Scanner(System.in);
+          String reg = sc.nextLine();
+          String no = sc.nextLine();
+          sc.close();
+          try {
+               validate(reg, no);
+               System.out.println("Valid");
+          } catch (Exception e) {
+               System.out.println(e);
+          }
+     }
+}
+</textarea>
+    <br>
+    <button id="qb51">Copy</button>
+    <script>
+    let text51;
+    text51 = document.getElementById("q51");
+    document.getElementById("qb51").onclick=function(){
+    text51.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>5) ArrayIndexOutOfBoundsException</p>
+  <textarea id="q52" class="que52" readonly>
+//ArrayIndexOutOfBoundsException
+import java.util.*;
+
+class Main {
+     public static void main(String[] args) {
+          Scanner scan = new Scanner(System.in);
+          try {
+               int size = scan.nextInt();
+               int[] intArray = new int[size];
+               for (int i = 0; i < size; i++) {
+                    intArray[i] = scan.nextInt();
+               }
+               int index = scan.nextInt();
+               System.out.println(intArray[index]);
+          } catch (ArrayIndexOutOfBoundsException e) {
+               System.out.println("Array index out of bound.");
+          }
+          try {
+               int a = scan.nextInt();
+               int b = scan.nextInt();
+               int c = a / b;
+               System.out.println(c);
+          } catch (ArithmeticException e) {
+               System.out.println(e);
+          }
+          try {
+               String str = null;
+               int index = scan.nextInt();
+               System.out.println(str);
+               System.out.println(str.charAt(index));
+          } catch (NullPointerException n) {
+               System.out.println(n);
+          }
+
+          scan.close();
+     }
+}
+</textarea>
+    <br>
+    <button id="qb52">Copy</button>
+    <script>
+    let text52;
+    text52 = document.getElementById("q52");
+    document.getElementById("qb52").onclick=function(){
+    text52.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <h2>Practical Exercises</h2>
+    <p>1) NumberFormatException</p>
+  <textarea id="q53" class="que53" readonly>
+import java.util.*;
+
+class ItemType {
+     private String name;
+     private double deposit;
+     private double costPerDay;
+
+     public ItemType() {
+          this.name = null;
+          this.deposit = 0;
+          this.costPerDay = 0;
+     }
+
+     public ItemType(String name, double deposit, double costPerDay) {
+          this.name = name;
+          this.deposit = deposit;
+          this.costPerDay = costPerDay;
+     }
+
+     public String getName() {
+          return name;
+     }
+
+     public void setName(String name) {
+          this.name = name;
+     }
+
+     public double getDeposit() {
+          return deposit;
+     }
+
+     public void setDeposit(double deposit) {
+          this.deposit = deposit;
+     }
+
+     public double getCostPerDay() {
+          return costPerDay;
+     }
+
+     public void setCostPerDay(double costPerDay) {
+          this.costPerDay = costPerDay;
+     }
+
+     public String toString() {
+          return name + " " + deposit + " " + costPerDay;
+     }
+}
+
+class Main {
+     public static void main(String[] args) {
+          Scanner scan = new Scanner(System.in);
+          ItemType i = new ItemType();
+          try {
+               i.setName(scan.nextLine());
+               i.setDeposit(Double.parseDouble(scan.nextLine()));
+               i.setCostPerDay(Double.parseDouble(scan.nextLine()));
+               System.out.println(i);
+          } catch (NumberFormatException n) {
+               System.out.println(n);
+          }
+
+          scan.close();
+     }
+}
+</textarea>
+    <br>
+    <button id="qb53">Copy</button>
+    <script>
+    let text53;
+    text53 = document.getElementById("q53");
+    document.getElementById("qb53").onclick=function(){
+    text53.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>2) Input an integer as dividend</p>
+  <textarea id="q54" class="que54" readonly>
+import java.util.*;
+
+class Q01Simple_List {
+     public static void main(String[] args) throws java.lang.Exception {
+          Scanner scan = new Scanner(System.in);
+          // Enter dividend
+          try {
+               int dividend = scan.nextInt();
+               // Enter divisor
+               int divisor = scan.nextInt();
+
+               try {
+                    System.out.println(dividend / divisor);
+               } catch (ArithmeticException e) {
+                    System.out.println(e);
+               }
+          } catch (Exception e) {
+               System.out.println(e);
+          }
+
+          scan.close();
+     }
+}
+</textarea>
+    <br>
+    <button id="qb54">Copy</button>
+    <script>
+    let text54;
+    text54 = document.getElementById("q54");
+    document.getElementById("qb54").onclick=function(){
+    text54.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>3) Write a program to valid the email address</p>
+  <textarea id="q55" class="que55" readonly>
+import java.util.*;
+
+class DomainException extends Exception {
+     String expDescription;
+
+     // public constructor with String argument
+     DomainException(String expDescription) {
+          super(expDescription);
+     }
+}
+
+class DotException extends Exception {
+     String expDescription;
+
+     // public constructor with String argument
+     DotException(String expDescription) {
+          super(expDescription);
+     }
+}
+
+class AtTheRateException extends Exception {
+     String expDescription;
+
+     // public constructor with String argument
+     AtTheRateException(String expDescription) {
+          super(expDescription);
+     }
+}
+
+class EmailValidationMain {
+     public static void main(String[] args) {
+
+          Scanner myObj = new Scanner(System.in);
+
+          String email = myObj.next();
+
+          boolean checkEndDot = false;
+          checkEndDot = email.endsWith(".");
+
+          int indexOfAt = email.indexOf('@');
+          int lastIndexOfAt = email.lastIndexOf('.');
+          int countOfAt = 0;
+          for (int i = 0; i < email.length(); i++) {
+               if (email.charAt(i) == '@')
+                    countOfAt++;
+          }
+          String buffering = email.substring(email.indexOf('@') + 1, email.length());
+          int len = buffering.length();
+          int countOfDotAfterAt = 0;
+          for (int i = 0; i < len; i++) {
+               if (buffering.charAt(i) == '.')
+                    countOfDotAfterAt++;
+          }
+          String userName = email.substring(0, email.indexOf('@'));
+          String domainName = email.substring(email.indexOf('.') + 1, email.length());
+
+          int domainCheck = 0;
+          if ((domainName.equals("in")) || (domainName.equals("com")) ||
+                    (domainName.equals("net")) || (domainName.equals("biz")))
+               domainCheck = 1;
+
+          try {
+               if ((checkEndDot) || (countOfDotAfterAt != 1)) {
+                    throw new DotException("Invalid Dot usage");
+               }
+
+               if (countOfAt != 1) {
+                    throw new AtTheRateException("Invalid @ usage");
+               }
+
+               if (domainCheck != 1) {
+                    throw new DomainException("Invalid Domain");
+               }
+
+          } catch (DotException e) {
+               System.out.println(e);
+          } catch (AtTheRateException e) {
+               System.out.println(e);
+          } catch (DomainException e) {
+               System.out.println(e);
+          }
+          if ((countOfAt == 1) && (userName.endsWith(".") == false) && (domainCheck == 1) &&
+                    (countOfDotAfterAt == 1) && ((indexOfAt + 3) <= (lastIndexOfAt) && !checkEndDot)) {
+               System.out.println("Valid email address");
+          } else {
+               System.out.println("Invalid email address");
+          }
+          myObj.close();
+     }
+}
+</textarea>
+    <br>
+    <button id="qb55">Copy</button>
+    <script>
+    let text55;
+    text55 = document.getElementById("q55");
+    document.getElementById("qb55").onclick=function(){
+    text55.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>4) program to validate the given password</p>
+  <textarea id="q56" class="que56" readonly>
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+class User {
+     String name;
+     String mobile;
+     String username;
+     String password;
+
+     public User(String name, String mobile, String username, String password) {
+          super();
+          this.name = name;
+          this.mobile = mobile;
+          this.username = username;
+          this.password = password;
+     }
+}
+
+class UserBO {
+     static void validate(User u) throws Exception {
+          String pattern = "[!|@|#|$|%|^|&|*]";
+          Pattern a = Pattern.compile(pattern);
+          Matcher m1 = a.matcher(u.password);
+
+          String pattern2 = "[1|2|3|4|5|6|7|8|9|0]";
+          Pattern b = Pattern.compile(pattern2);
+          Matcher m2 = b.matcher(u.password);
+          // System.out.println(u.password);
+
+          if ((u.password.length() < 9) || (u.password.length() > 20)) {
+               throw new Exception("Should be minimum of 10 characters and maximum of 20 characters");
+          } else if (!m2.find()) {
+               throw new Exception("Should contain at least one digit");
+          }
+
+          else if (!m1.find()) {
+               throw new Exception("It should contain at least one special character");
+          } else
+               System.out.println("Valid Password");
+     }
+}
+
+class PasswordMain {
+     public static void main(String args[]) throws Exception {
+          Scanner scan = new Scanner(System.in);
+          String name = scan.nextLine();
+          String mobile = scan.nextLine();
+          String username = scan.nextLine();
+          String password = scan.nextLine();
+          User userOne = new User(name, mobile, username, password);
+          try {
+               UserBO.validate(userOne);
+          } catch (Exception e) {
+               System.out.println(e);
+          }
+
+          scan.close();
+     }
+}
+</textarea>
+    <br>
+    <button id="qb56">Copy</button>
+    <script>
+    let text56;
+    text56 = document.getElementById("q56");
+    document.getElementById("qb56").onclick=function(){
+    text56.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <h2>Lab_Exercise CSE207_10</h3>
+  <p>1)  program that meets the following requirements - Creates and array with 100 elements</p>
+  <textarea id="q57" class="que57" readonly>
+import java.util.*;
+
+class Main {
+     public static void main(String[] args) {
+          // Create a Scanner
+          Scanner scan = new Scanner(System.in);
+          // Invoke getArray method
+          int[] array = getArray();
+          // Prompt the user to enter the index of the array
+          try {
+               // Display the corresponding element value
+               System.out.println("The corresponding element value is "
+                         +
+                         array[scan.nextInt()]);
+          } catch (ArrayIndexOutOfBoundsException ex) {
+               System.out.println("Out of Bounds.");
+          }
+
+          scan.close();
+     }
+
+     /** Returns an array with 100 randomly chosen integers */
+     public static int[] getArray() {
+          int[] array = new int[100];  
+          for (int i = 0; i < array.length; i++) {
+               array[i] = i;
+          }
+          return array;
+     }
+}
+</textarea>
+    <br>
+    <button id="qb57">Copy</button>
+    <script>
+    let text57;
+    text57 = document.getElementById("q57");
+    document.getElementById("qb57").onclick=function(){
+    text57.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>2) Defined a Triangle class with three sides</p>
+  <textarea id="q58" class="que58" readonly>
+import java.util.*;
+
+class Main {
+     public static void main(String[] args) {
+          Scanner scan = new Scanner(System.in);
+          double s1 = scan.nextDouble();
+          double s2 = scan.nextDouble();
+          double s3 = scan.nextDouble();
+          try
+          {
+               TriangleWithException t1 = new TriangleWithException(s1,
+                         s2, s3);
+               System.out.println("Perimeter " + t1.getPerimeter());
+          }
+          catch (IllegalTriangleException ex)
+          {
+               System.out.println("Illegal triangle");
+               System.out.println("Side1: " + ex.getSide1());
+               System.out.println("Side2: " + ex.getSide2());
+               System.out.println("Side3: " + ex.getSide3());
+          }
+
+          scan.close();
+     }
+}
+
+class TriangleWithException {
+     double side1, side2, side3;
+
+     /** Constructor */
+     public TriangleWithException(double side1, double side2, double side3) throws IllegalTriangleException
+     {
+          if (side1 + side2 <= side3 || side1 + side3 <= side2 || side2 + side3 <= side1)
+               throw new IllegalTriangleException(side1, side2, side3);
+          
+          this.side1 = side1;
+          this.side2 = side2;
+          this.side3 = side3;
+     }
+
+     /** Implement the abstract method findArea scan GeometricObject */
+     public double getArea()
+     {
+          double s = (side1 + side2 + side3) / 2;
+          return Math.sqrt(s * (s - side1) * (s - side2) * (s - side3));
+     }
+
+     /**
+      * Implement the abstract method findCircumference scan
+      * GeometricObject
+      **/
+     public double getPerimeter()
+     {
+          return side1 + side2 + side3;
+     }
+
+     @Override
+     public String toString()
+     {
+          // Implement it to return the three sides
+          return "Triangle: side1 = " + side1 + " side2 = " + side2 + " side3 = " + side3;
+     }
+}
+
+class IllegalTriangleException extends Exception {
+     private double side1, side2, side3;
+
+     public IllegalTriangleException(double side1, double side2, double side3)
+     {
+          super("Illegal sides " + side1 + " " + side2 + " " + side3);
+          
+          this.side1 = side1;
+          this.side2 = side2;
+          this.side3 = side3;
+     }
+
+     /** Return side1 */
+     public double getSide1() {
+          return side1;
+     }
+
+     /** Return side2 */
+     public double getSide2() {
+          return side2;
+     }
+
+     /** Return side3 */
+     public double getSide3() {
+          return side3;
+     }
+}
+</textarea>
+    <br>
+    <button id="qb58">Copy</button>
+    <script>
+    let text58;
+    text58 = document.getElementById("q58");
+    document.getElementById("qb58").onclick=function(){
+    text58.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>3) Write a bin2Dec (String binaryString)</p>
+  <textarea id="q59" class="que59" readonly>
+import java.util.*;
+
+class Main{
+     public static int bin2Dec(String binaryString) throws NumberFormatException
+     {
+          int decimal = 0;
+          int strLength = binaryString.length();
+          
+          for (int i = 0; i < strLength; i++)
+          {
+               if (binaryString.charAt(i) < '0' || binaryString.charAt(i) > '1')
+               {
+                    throw new NumberFormatException("The Input String is not Binary");
+               }
+
+               decimal += (binaryString.charAt(i) - '0') * Math.pow(2, strLength - 1 - i);
+          }
+
+          return decimal;
+     }
+
+     public static void main(String[] args)
+     {
+          Scanner scan = new Scanner(System.in);
+          String str = scan.nextLine();
+
+          try
+          {
+               System.out.println("Value = " + bin2Dec(str));
+          }
+          catch (NumberFormatException e)
+          {
+               System.out.println(e);
+          }
+
+          scan.close();
+     }
+}
+</textarea>
+    <br>
+    <button id="qb59">Copy</button>
+    <script>
+    let text59;
+    text59 = document.getElementById("q59");
+    document.getElementById("qb59").onclick=function(){
+    text59.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <h2>Lab_Exercise SRMAP_Java_Exceptions_COD_Multifile</h3>
+  <p>1) Develop a Java program that simulates a simple banking system</p>
+  <textarea id="q60" class="que60" readonly>
+//Main.java
+import java.util.*;
+
+public class Main {
+     public static void main(String[] args) {
+          Scanner scan = new Scanner(System.in);
+          System.out.println("Welcome to the Neo bank!");
+          // Create a new account for the user
+          Account account = new Account();
+          while (true) {
+               /*
+                * System.out.println("\nPlease select an option:");
+                * System.out.println("1. Deposit money");
+                * System.out.println("2. Withdraw money");
+                * System.out.println("3. Check balance");
+                * System.out.println("4. Exit");
+                */
+               int choice = scan.nextInt();
+               switch (choice) {
+                    case 1:
+                         // System.out.print("Enter the amount to deposit: ");
+                         double depositAmount = scan.nextDouble();
+                         try {
+                              account.deposit(depositAmount);
+                              System.out.println("Deposit successful!");
+                         } catch (IllegalArgumentException e) {
+                              System.out.println(e.getMessage());
+                         }
+                         break;
+                    case 2:
+                         // System.out.print("Enter the amount to withdraw: ");
+                         double withdrawAmount = scan.nextDouble();
+                         try {
+                              account.withdraw(withdrawAmount);
+                              System.out.println("Withdrawal successful!");
+                         } catch (IllegalArgumentException | InsufficientFundsException e) {
+                              System.out.println(e.getMessage());
+                         }
+                         break;
+                    case 3:
+                         System.out.println("Your current balance is: $" +
+                                   account.getBalance());
+                         break;
+                    case 4:
+                         System.out.println("Thank you for banking with us!");
+                         System.exit(0);
+                    default:
+                         System.out.println("Invalid choice. Please try again.");
+                         break;
+               }
+               
+               scan.close();
+          }
+     }
+}
+
+
+//Account.java
+public class Account {
+     private double balance;
+
+     public Account() {
+          balance = 0;
+     }
+
+     public void deposit(double amount) throws IllegalArgumentException {
+          if (amount <= 0) {
+               throw new IllegalArgumentException("Deposit amount must be positive.");
+          }
+          balance += amount;
+     }
+
+     public void withdraw(double amount) throws IllegalArgumentException,
+               InsufficientFundsException {
+          if (amount <= 0) {
+               throw new IllegalArgumentException("Withdrawal amount must be positive.");
+          }
+          if (amount > balance) {
+               throw new InsufficientFundsException("Insufficient funds.");
+          }
+          balance -= amount;
+     }
+
+     public double getBalance() {
+          return balance;
+     }
+}
+
+
+//InsufficientFundsException.java
+public class InsufficientFundsException extends Exception {
+     public InsufficientFundsException(String message) {
+          super(message);
+     }
+}
+</textarea>
+    <br>
+    <button id="qb60">Copy</button>
+    <script>
+    let text60;
+    text60 = document.getElementById("q60");
+    document.getElementById("qb60").onclick=function(){
+    text60.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>2) Write a Java Program that prompts the suer to input an integer value between 1 and 10</p>
+  <textarea id="q61" class="que61" readonly>
+//Main.java
+import java.util.*;
+
+public class Main {
+     public static void main(String[] args) {
+          Scanner scan = new Scanner(System.in);
+          // System.out.print("Enter a number between 1 and 10: ");
+          int num = scan.nextInt();
+          
+          try
+          {
+               RangeChecker.checkInRange(num);
+               System.out.println("Number is within range");
+          }
+          catch (OutOfRangeException e)
+          {
+               System.out.println("Number is out of range");
+          }
+
+          scan.close();
+     }
+}
+
+
+//RangeChecker.java
+public class RangeChecker {
+     public static void checkInRange(int num) throws OutOfRangeException {
+          if (num < 1 || num > 10) {
+               throw new OutOfRangeException();
+          }
+     }
+}
+
+class OutOfRangeException extends Exception {
+     public OutOfRangeException() {
+          super("Number is out of range");
+     }
+}
+</textarea>
+    <br>
+    <button id="qb61">Copy</button>
+    <script>
+    let text61;
+    text61 = document.getElementById("q61");
+    document.getElementById("qb61").onclick=function(){
+    text61.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <p>3) Create a Java Program that takes two integers to input from the user</p>
+  <textarea id="q62" class="que62" readonly>
+//Main.java
+import java.util.*;
+
+public class Main {
+     public static void main(String[] args) {
+          Scanner scan = new Scanner(System.in);
+          // System.out.print("Enter a number: ");
+          int num1 = scan.nextInt();
+          // System.out.print("Enter another number: ");
+          int num2 = scan.nextInt();
+          
+          try
+          {
+               int result = Calculator.divide(num1, num2);
+               System.out.println(num1 + " / " + num2 + " = " + result);
+          }
+          catch (ArithmeticException e)
+          {
+               System.out.println("Error: " + e.getMessage());
+          }
+
+          scan.close();
+     }
+}
+
+
+//Calculator.java
+public class Calculator {
+     public static int divide(int num1, int num2) throws ArithmeticException {
+          if (num2 == 0)
+          {
+               throw new ArithmeticException("Cannot divide by zero");
+          }
+          
+          return num1 / num2;
+     }
+}
+</textarea>
+    <br>
+    <button id="qb62">Copy</button>
+    <script>
+    let text62;
+    text62 = document.getElementById("q62");
+    document.getElementById("qb62").onclick=function(){
+    text62.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    }
+    </script>
+    <br>
+    <h1 id="th" class="th">Threads</h1><br>
+    <h2>Concept Builder</h2>
+    <p>1) Default priority of a java thread is</p>
+    <p>Ans) 5</p>
+    <p>2) The property of the thread class that gives normal(default) priority of a thread is</p>
+    <p>Ans) NORM_PRIORITY</p>
+    <p>3) What is the priority of the thread in the following java program?</p>
+<textarea readonly style="width: 400px; height:120px;">
+class multithreaded_programing 
+    {
+        public static void main(String args[])
+        {
+            Thread t = Thread.currentThread();
+            System.out.println(t);        
+        }
+    }
+</textarea>
+    <p>Ans) 5</p>
+    <p>4) What will be the output of the following program?</p>
+<textarea readonly style="width: 350px; height:120px;">
+class Multithread
+{
+    public static void main(String args[])
+    {
+        Thread t = Thread.currentThread();
+        System.out.println(t);        
+    }
+}
+</textarea>
+    <p>Ans) Thread[main,5,main]</p>
+    <p>5) What is the priority of the thread in output in the following Java program?</p>
+<textarea readonly style="width: 400px; height:120px;">
+class multithreaded_programing
+    {
+        public static void main(String args[])
+        {
+            Thread t = Thread.currentThread();
+            t.setName("New Thread");
+            System.out.println(t.getName());        
+        }
+    }
+</textarea>
+    <p>Ans) New Thread</p>
+    <p>6) Which two are valid constructors for Thread?</p>
+<textarea readonly style="width: 300px; height:120px;">
+Thread(Runnable r, String name)
+Thread()
+Thread(int priority)
+Thread(Runnable r, ThreadGroup g)
+Thread(Runnable r, int priority)
+</textarea>
+    <p>Ans) 1 and 2</p>
+    <p>7) What is the output of this program?</p>
+<textarea readonly style="width: 450px; height:120px;">
+class A implements Runnable
+{
+    public void run()
+    {
+        System.out.println(Thread.currentThread().getName());
+    }
+}
+public class Test
+{
+    public static void main(String... args)
+    {
+        A a = new A();
+        Thread t = new Thread(a);
+        t.setName("good");
+        t.start();
+    }
+}
+</textarea>
+<p>Ans) good</p>
+    <br>
+    </div>
+	</body>
+</html>

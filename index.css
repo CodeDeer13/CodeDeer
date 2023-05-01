@@ -1,0 +1,137 @@
+
+body {
+	font-family: Bahnschrift SemiLight;	
+	background-image: url("2970445.jpg");
+}
+
+.container {
+	width: 380px;
+	margin:3% auto;
+	border-radius: 25px;
+	background-color: rgba(0,0,0,0.1);
+	box-shadow: 0 0 8px #333;
+}
+
+.header {
+	text-align: center;
+	padding-top: 30px;
+}
+
+.header h1 {
+	color: #333;
+	font-size: 45px;
+	margin-bottom: 40px;
+}
+
+.main {
+	text-align: center;
+}
+
+.main input, button {
+	width: 300px;
+	height: 40px;
+	border:none;
+	outline: none;
+	padding-left: 40px;
+	box-sizing: border-box;
+	font-size: 15px;
+	color: #333;
+	margin-bottom: 40px;
+	font-family: georgia;
+}
+
+.login {
+	padding-left: 0;
+	background-color: #83acf1;
+	letter-spacing: 1px;
+	font-weight: bold;
+	margin-bottom: 30px;
+	width: 140px;
+	margin-right:10px;
+	cursor: pointer;
+	font-size: 20px;
+	border-radius: 25px;
+}
+
+.guest{
+	margin-top: 0;
+	width: 200px;
+	padding: 0;
+	font-weight: bold;
+	background-color: #83acf1;
+	letter-spacing: 1px;
+	cursor: pointer;
+	font-size: 18px;
+	border-radius: 25px;
+}
+.register{
+	margin-top: 2px;
+	padding: 0;
+	font-weight: bold;
+	background-color: #83acf1;
+	letter-spacing: 1px;
+	width: 140px;
+	border-radius: 25px;
+	cursor: pointer;
+	font-size: 18px;
+}
+
+.login:hover,.guest:hover,.register:hover,.forgotpassword:hover {
+	box-shadow: 2px 2px 5px #555;
+	background-color: #7799d4;
+}
+.main input:hover {
+	box-shadow: 2px 2px 5px #555;
+	background-color: #ddd;
+}
+
+.main span {
+	position: relative;
+}
+
+.main i {
+	position: absolute;
+	left: 15px;
+	color: #333;
+	font-size: 16px;
+	top: 2px;
+}
+.forgotpassword{
+	padding:0;
+	text-align:center;
+	width:180px;
+	margin-left:1120px;
+	color: #333;
+	font-family: arial;
+	font-weight: bold;
+	border-radius: 25px;
+	background-color: #83acf1;
+	letter-spacing: 1px;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

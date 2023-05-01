@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+			<link href="llustration-reindeer-head-simple-contour-260nw-1914044329-modified.png" rel="icon" type="image/png">
+	    <title>
+		Code Deer
+		</title>
+		<link href="COA Programs.css" rel="stylesheet">
+	</head>
+	<body>
+	<img class="mainlogo" src="llustration-reindeer-head-simple-contour-260nw-1914044329-modified.png"> 
+	<h1 class="logo"> Code Deer</h1>
+	<br>
+	<br>
+	<p class="q1">1. Write Assembly language program to print the numbers from 0 to 9.</p>
+	<textarea id="q1" class="que1" readonly>
+ORG 100H
+.CODE
+MOV CX, 10
+MOV BL, 0
+LOOP1:
+MOV AL, BL
+MOV DL, AL
+ADD DL, 48
+MOV AH, 2H
+INT 21H
+INC BL
+LOOP LOOP1
+HLT</textarea>
+	<br>
+	<button id="qb1">Copy</button>
+	<script>
+	let text1;
+	text1 = document.getElementById("q1");
+	document.getElementById("qb1").onclick=function(){
+	text1.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script>
+	<br>
+	<br>
+	<p class="q2">2. Write Assembly language programs to find average of numbers stored in an array.</p>
+	<textarea id="q2" class="que2" readonly>
+DATA SEGMENT
+    ARRAY DB 2,9,12,3,8,14
+    AVG DB ?
+    MSG DB "AVERAGE = $"
+ENDS
+CODE SEGMENT
+    ASSUME DS:DATA CS:CODE
+START:
+MOV AX,DATA
+MOV DS,AX
+LEA SI,ARRAY
+LEA DX,MSG
+MOV AH,9
+INT 21H
+MOV AX,00
+MOV BL,9
+MOV CX,9
+LOOP1:
+ADD AL,ARRAY[SI]
+INC SI
+LOOP LOOP1
+DIV BL
+ADD AL,30H
+MOV DL,AL
+MOV AH,2
+INT 21H
+MOV AH,4CH
+INT 21H
+ENDS
+END START</textarea>
+	<br>
+	<button id="qb2">Copy</button>
+	<script>
+	let text2;
+	text2 = document.getElementById("q2");
+	document.getElementById("qb2").onclick=function(){
+	text2.select();
+	document.execCommand("copy");
+	window.getSelection().removeAllRanges();
+	}
+	</script>
+	<br>
+	<br>
+	<p class="q3">3. Write Assembly language programs to find the largest number in an array.</p>
+	<p class="q4">4. Write Assembly language programs to sort the numbers in ascending order.</p>
+	<p class="q5">5. Write Assembly language programs to find L.C.M of two numbers.</p>
+	<p class="q6">6. Write Assembly language programs to find G.C.D of two numbers.</p>
+	<p class="q7">7. Write Assembly language programs to display nth term Fibonacci number.</p>
+	<p class="q8">8. Write Assembly language programs to find the factorial of a number.</p>
+	</body>
+</html>
